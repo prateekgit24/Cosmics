@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - COSMICS</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0f1117;
+            --surface: #181c26;
+            --surface2: #1e2333;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e4e8f0;
+            --muted: #6b7590;
+            --accent: #4f8ef7;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 24px 48px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .logo-name span {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 64px 24px;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: var(--muted);
+            margin-bottom: 48px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .contact-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.22s ease, border-color 0.22s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 142, 247, 0.4);
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .contact-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .contact-detail {
+            color: var(--muted);
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
+
+        .contact-action {
+            display: inline-block;
+            background: rgba(79, 142, 247, 0.1);
+            color: var(--accent);
+            padding: 14px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .contact-action:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 142, 247, 0.25);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="main.html">
+            <svg viewBox="0 0 28 28" fill="none">
+                <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
+                <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
+                <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
+            </svg>
+            <span class="logo-name">COS<span>MICS</span></span>
+        </a>
+    </header>
+    
+    <div class="container">
+        <h1>Let's Connect</h1>
+        <p class="subtitle">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+        
+        <div class="contact-cards">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-title">Email</div>
+                <div class="contact-detail">Drop me an email for direct inquiries and support.</div>
+                <a href="mailto:help@cosmics.software" class="contact-action">help@cosmics.software</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">💬</div>
+                <div class="contact-title">Discord</div>
+                <div class="contact-detail">Join our community server to chat and get real-time help.</div>
+                <a href="https://discord.com" target="_blank" rel="noopener" class="contact-action">Join Discord</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">🐙</div>
+                <div class="contact-title">GitHub</div>
+                <div class="contact-detail">Check out my open-source projects and contributions.</div>
+                <a href="https://github.com" target="_blank" rel="noopener" class="contact-action">View GitHub</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
