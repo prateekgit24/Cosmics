@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COSMICS</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0f1117;
+            --surface: #181c26;
+            --surface2: #1e2333;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e4e8f0;
+            --muted: #6b7590;
+            --accent: #4f8ef7;
+            --accent-soft: rgba(79, 142, 247, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(15, 17, 23, 0.92);
+            backdrop-filter: blur(16px);
+            z-index: 50;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--text);
+        }
+
+        .logo-name span {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 6px 15px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+
+        .pill:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .pill.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 48px 48px 28px;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .page-sub {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 18px;
+            padding: 4px 48px 80px;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.015);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(79, 142, 247, 0.22);
+            border-color: rgba(79, 142, 247, 0.22);
+        }
+
+        /* SLIDESHOW */
+        .slideshow {
+            width: 100%;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            background: var(--surface2);
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.55s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            background: linear-gradient(135deg, var(--surface2), #12151f);
+        }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 4px;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.28);
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        /* CARD BODY */
+        .card-body {
+            padding: 18px 18px 16px;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .badge {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px;
+            border: 1px solid;
+        }
+
+        .bweb {
+            color: #4f8ef7;
+            border-color: rgba(79, 142, 247, .35);
+            background: rgba(79, 142, 247, .08);
+        }
+
+        .bgame {
+            color: #f97060;
+            border-color: rgba(249, 112, 96, .35);
+            background: rgba(249, 112, 96, .08);
+        }
+
+        .bext {
+            color: #f5a623;
+            border-color: rgba(245, 166, 35, .35);
+            background: rgba(245, 166, 35, .08);
+        }
+
+        .bos {
+            color: #4cd97b;
+            border-color: rgba(76, 217, 123, .35);
+            background: rgba(76, 217, 123, .08);
+        }
+
+        .bapp {
+            color: #c084fc;
+            border-color: rgba(192, 132, 252, .35);
+            background: rgba(192, 132, 252, .08);
+        }
+
+        .card-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .sdot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .slive {
+            background: #4cd97b;
+            box-shadow: 0 0 5px rgba(76, 217, 123, .5);
+        }
+
+        .sbeta {
+            background: #f5a623;
+            box-shadow: 0 0 5px rgba(245, 166, 35, .4);
+        }
+
+        .ssoon {
+            background: var(--muted);
+        }
+
+        .card-arrow {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            transition: all 0.18s;
+        }
+
+        .card:hover .card-arrow {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 7, 12, 0.86);
+            backdrop-filter: blur(14px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s ease;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* MODAL */
+        .modal {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 660px;
+            max-height: 88vh;
+            overflow-y: auto;
+            transform: scale(0.95) translateY(14px);
+            transition: transform 0.22s ease;
+            position: relative;
+        }
+
+        .overlay.open .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.18s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* MODAL GALLERY */
+        .mgallery {
+            width: 100%;
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px 18px 0 0;
+            background: var(--surface2);
+        }
+
+        .mslide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+        }
+
+        .mslide.active {
+            opacity: 1;
+        }
+
+        .mslide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mslide-ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            background: linear-gradient(135deg, var(--surface2), #12151f);
+        }
+
+        .mgallery-nav {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            pointer-events: none;
+        }
+
+        .gbtn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(10, 12, 20, 0.68);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: all;
+            transition: background 0.2s;
+        }
+
+        .gbtn:hover {
+            background: rgba(79, 142, 247, 0.4);
+        }
+
+        .mgallery-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .mdot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.28);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .mdot.active {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* MODAL CONTENT */
+        .mcontent {
+            padding: 24px 28px 32px;
+        }
+
+        .mheader {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .micon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+
+        .mmeta {
+            flex: 1;
+        }
+
+        .mname {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .mtagline {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .mbadges {
+            display: flex;
+            gap: 7px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .mstatus-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            background: transparent;
+        }
+
+        .mdesc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.72;
+            margin-bottom: 22px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .spec {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 11px 14px;
+        }
+
+        .spec-label {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 3px;
+        }
+
+        .spec-val {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .tech-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 24px;
+        }
+
+        .ttag {
+            font-size: 12px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 3px 11px;
+            border-radius: 6px;
+        }
+
+        .open-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 28px;
+            width: 100%;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.18s;
+        }
+
+        .open-btn:hover {
+            background: #3b7ee0;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(79, 142, 247, 0.35);
+        }
+
+        .empty {
+            text-align: center;
+            padding: 70px 20px;
+            color: var(--muted);
+            grid-column: 1/-1;
+        }
+
+        @media(max-width:680px) {
+            header {
+                padding: 18px 20px;
+            }
+
+            .page-header,
+            .grid {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mcontent {
+                padding: 18px 18px 26px;
+            }
+
+            .mgallery {
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a class="logo" href="#">
+            <svg viewBox="0 0 28 28" fill="none">
+                <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
+                <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
+                <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
+            </svg>
+            <span class="logo-name">COS<span>MICS</span></span>
+        </a>
+        <nav>
+            <button class="pill active" onclick="filter('all',this)">All</button>
+            <button class="pill" onclick="filter('web',this)">Web</button>
+            <button class="pill" onclick="filter('game',this)">Games</button>
+            <button class="pill" onclick="filter('ext',this)">Extensions</button>
+            <button class="pill" onclick="filter('os',this)">OS</button>
+            <button class="pill" onclick="filter('app',this)">Apps</button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">Our Products</h1>
+        <p class="page-sub">Click any card to explore details, screenshots &amp; specs.</p>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <!-- MODAL -->
+    <div class="overlay" id="overlay" onclick="bgClose(event)">
+        <div class="modal" id="modal">
+            <button class="modal-close" onclick="closeModal()">&#10005;</button>
+
+            <div class="mgallery" id="mgallery">
+                <div class="mgallery-nav">
+                    <button class="gbtn" id="gprev">&#8592;</button>
+                    <button class="gbtn" id="gnext">&#8594;</button>
+                </div>
+                <div class="mgallery-dots" id="mgdots"></div>
+            </div>
+
+            <div class="mcontent">
+                <div class="mheader">
+                    <div class="micon" id="micon"></div>
+                    <div class="mmeta">
+                        <div class="mname" id="mname"></div>
+                        <div class="mtagline" id="mtagline"></div>
+                        <div class="mbadges" id="mbadges"></div>
+                    </div>
+                </div>
+                <p class="mdesc" id="mdesc"></p>
+                <div class="specs-grid" id="mspecs"></div>
+                <div class="tech-row" id="mtech"></div>
+                <a class="open-btn" id="mbtn" href="#" target="_blank" rel="noopener noreferrer">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.3">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    Open Product
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── PRODUCT DATA ─────────────────────────────────────────────
+        // Replace screenshots with real image URLs, and url with your real link.
+        // ─────────────────────────────────────────────────────────────
+        const PRODUCTS = [
+            {
+                id: 1, category: 'web',
+                name: 'Falcon Mart', icon: '🛒',
+                tagline: 'Full-stack e-commerce platform',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A complete e-commerce solution with real-time inventory, multi-vendor support, secure Stripe checkout, and a rich admin dashboard. Handles thousands of concurrent users with sub-100ms response times.',
+                specs: [
+                    { l: 'Platform', v: 'Web (Browser)' },
+                    { l: 'Category', v: 'E-Commerce' },
+                    { l: 'Version', v: '2.4.1' },
+                    { l: 'Active Users', v: '12,000+' },
+                ],
+                tech: ['Next.js', 'PostgreSQL', 'Stripe', 'Redis', 'Vercel'],
+                screenshots: [
+                    'https://placehold.co/660x260/1e2333/4f8ef7?text=Home+Page',
+                    'https://placehold.co/660x260/1a2040/f5a623?text=Product+Listing',
+                    'https://placehold.co/660x260/1e2333/4cd97b?text=Checkout+Flow',
+                ],
+                url: 'https://example.com'
+            },
+            {
+                id: 2, category: 'game',
+                name: 'Mini-Games', icon: '🎮',
+                tagline: 'Browser-based space shooter',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'Fast-paced space shooter playable entirely in the browser. Procedurally generated enemy waves, a global leaderboard, real-time multiplayer arenas, and unlockable ships. No download required.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Action / Shooter' },
+                    { l: 'Mode', v: 'Single & Multi-player' },
+                    { l: 'Players', v: '5,000+' },
+                ],
+                tech: ['Canvas API', 'WebSocket', 'Node.js', 'Socket.io'],
+                screenshots: [
+                    'https://placehold.co/660x260/0d1020/f97060?text=Gameplay',
+                    'https://placehold.co/660x260/0d1020/f5a623?text=Leaderboard',
+                ],
+                url: 'https://minigames.cosmics.software'
+            },
+            {
+                id: 3, category: 'web',
+                name: 'Falcon Fit', icon: '💪',
+                tagline: 'AI-powered fitness tracker',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'sbeta', statusLabel: 'Beta',
+                desc: 'Smart fitness platform with AI-generated workout plans tailored to your goals. Log calories, track progress with charts, follow guided routines, and get intelligent coaching that adapts to your pace.',
+                specs: [
+                    { l: 'Platform', v: 'Web + Mobile' },
+                    { l: 'Category', v: 'Health & Fitness' },
+                    { l: 'Version', v: '1.0 Beta' },
+                    { l: 'Users', v: '1,200+' },
+                ],
+                tech: ['React', 'Python', 'OpenAI API', 'Chart.js', 'Supabase'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a2333/4f8ef7?text=Dashboard',
+                    'https://placehold.co/660x260/1e1a33/c084fc?text=Workout+Plan',
+                    'https://placehold.co/660x260/1a2333/4cd97b?text=Progress+Charts',
+                ],
+                url: 'https://example.com'
+            },
+            {
+                id: 4, category: 'web',
+                name: 'Learn Hub', icon: '📚',
+                tagline: 'Interactive education platform',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'Video-first learning platform with interactive quizzes, certificates, and an adaptive engine that personalizes your learning path. Instructors build courses with a drag-and-drop editor. Students earn verifiable credentials.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Education' },
+                    { l: 'Courses', v: '200+' },
+                    { l: 'Learners', v: '8,500+' },
+                ],
+                tech: ['Vue.js', 'Video.js', 'MongoDB', 'Express', 'AWS S3'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a2033/f5a623?text=Course+Library',
+                    'https://placehold.co/660x260/1e2033/4f8ef7?text=Video+Player',
+                ],
+                url: 'https://example.com'
+            },
+            {
+                id: 5, category: 'ext',
+                name: 'Falcon Shield', icon: '🛡️',
+                tagline: 'Privacy & ad blocker extension',
+                badge: 'bext', badgeLabel: 'Extension',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'Chrome extension that silently blocks trackers, ads, and malicious scripts with zero performance overhead. Real-time threat counter, per-site allowlisting, and privacy reports. 4.9 stars on the Web Store.',
+                specs: [
+                    { l: 'Platform', v: 'Chrome / Edge' },
+                    { l: 'Category', v: 'Privacy & Security' },
+                    { l: 'Version', v: '3.1.0' },
+                    { l: 'Installs', v: '22,000+' },
+                ],
+                tech: ['Manifest V3', 'Chrome APIs', 'Vanilla JS', 'WebAssembly'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a1e2a/4cd97b?text=Shield+Popup',
+                    'https://placehold.co/660x260/1a1e2a/4f8ef7?text=Privacy+Report',
+                ],
+                url: 'https://example.com'
+            },
+            {
+                id: 6, category: 'ext',
+                name: 'Quick Notes', icon: '📝',
+                tagline: 'Instant notes from any tab',
+                badge: 'bext', badgeLabel: 'Extension',
+                status: 'sbeta', statusLabel: 'Beta',
+                desc: 'Press a shortcut, write a note, done. Lives in your browser toolbar and syncs everything to the cloud instantly. Supports Markdown, tags, pinning, and full-text search across all your notes.',
+                specs: [
+                    { l: 'Platform', v: 'Chrome' },
+                    { l: 'Category', v: 'Productivity' },
+                    { l: 'Version', v: '0.9 Beta' },
+                    { l: 'Installs', v: '3,400+' },
+                ],
+                tech: ['Chrome APIs', 'Firebase', 'Markdown', 'JS'],
+                screenshots: [
+                    'https://placehold.co/660x260/1e1a2a/c084fc?text=Note+Editor',
+                ],
+                url: 'https://example.com'
+            },
+            {
+                id: 7, category: 'os',
+                name: 'Falcon OS', icon: '💻',
+                tagline: 'Mini OS built with web technologies',
+                badge: 'bos', badgeLabel: 'OS',
+                status: 'sbeta', statusLabel: 'Beta',
+                desc: 'A fully functional mini operating system featuring a custom shell, file manager, text editor, media player, settings panel, and a built-in app store — all built with web technologies wrapped in Electron.',
+                specs: [
+                    { l: 'Platform', v: 'Windows / macOS / Linux' },
+                    { l: 'Category', v: 'Operating System' },
+                    { l: 'Size', v: '~85 MB' },
+                    { l: 'Version', v: '0.7 Beta' },
+                ],
+                tech: ['Electron', 'Node.js', 'React', 'C++', 'SQLite'],
+                screenshots: [
+                    'https://placehold.co/660x260/0d1117/4cd97b?text=Desktop',
+                    'https://placehold.co/660x260/0d1117/4f8ef7?text=File+Manager',
+                    'https://placehold.co/660x260/0d1117/f5a623?text=Terminal',
+                ],
+                url: 'https://example.com'
+            },
+            {
+                id: 8, category: 'game',
+                name: 'Ghost Killer', icon: '👻',
+                tagline: 'Ghost Killer',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'Ghost Killer is a browser-based game where you have to kill ghosts using your mouse.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Strategy / Board' },
+                    { l: 'Mode', v: 'vs AI / Online PvP' },
+                    { l: 'Players', v: '9,000+' },
+                ],
+                tech: ['React', 'Stockfish WASM', 'WebRTC', 'Socket.io'],
+                screenshots: [
+                    'https://placehold.co/660x260/101820/f5a623?text=Chess+Board',
+                    'https://placehold.co/660x260/0d1520/4f8ef7?text=ELO+Ranking',
+                ],
+                url: 'https://ghost-game-g417.onrender.com/'
+            },
+            {
+                id: 9, category: 'app',
+                name: 'Falcon Desk', icon: '📊',
+                tagline: 'Desktop productivity suite',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'All-in-one desktop app combining task manager, calendar, note-taking, habit tracker, and Pomodoro timer. Works fully offline. Clean, distraction-free interface designed for deep focus sessions.',
+                specs: [
+                    { l: 'Platform', v: 'Windows / macOS' },
+                    { l: 'Category', v: 'Productivity' },
+                    { l: 'Size', v: '~60 MB' },
+                    { l: 'Version', v: '2.0.3' },
+                ],
+                tech: ['Electron', 'React', 'SQLite', 'Tailwind'],
+                screenshots: [
+                    'https://placehold.co/660x260/131820/c084fc?text=Dashboard',
+                    'https://placehold.co/660x260/131820/4f8ef7?text=Task+Manager',
+                    'https://placehold.co/660x260/131820/4cd97b?text=Pomodoro',
+                ],
+                url: 'https://example.com'
+            },
+            {
+                id: 10, category: 'app',
+                name: 'Mobile Sync', icon: '📱',
+                tagline: 'Falcon ecosystem on your phone',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'sbeta', statusLabel: 'Beta',
+                desc: 'Cross-platform mobile companion for all Falcon products. Access notes, tasks, and progress from anywhere. Get smart push notifications and sync data instantly across all your devices.',
+                specs: [
+                    { l: 'Platform', v: 'iOS & Android' },
+                    { l: 'Category', v: 'Productivity' },
+                    { l: 'Version', v: '1.1 Beta' },
+                    { l: 'Downloads', v: '2,100+' },
+                ],
+                tech: ['React Native', 'Expo', 'Firebase', 'Redux'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a1e33/4f8ef7?text=App+Home',
+                    'https://placehold.co/660x260/1a1e33/4cd97b?text=Notifications',
+                ],
+                url: 'https://example.com'
+            },
+        ];
+
+        // ── CARD BUILDER ──────────────────────────────────────────────
+        function buildCard(p) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.category = p.category;
+
+            const slidesHTML = p.screenshots.map((src, i) =>
+                `<div class="slide ${i === 0 ? 'active' : ''}"><img src="${src}" alt="" loading="lazy"/></div>`
+            ).join('');
+
+            const dotsHTML = p.screenshots.length > 1
+                ? `<div class="slide-dots">${p.screenshots.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}"></div>`).join('')}</div>`
+                : '';
+
+            card.innerHTML = `
+    <div class="slideshow" data-idx="0">
+      ${slidesHTML}${dotsHTML}
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-icon">${p.icon}</div>
+        <span class="badge ${p.badge}">${p.badgeLabel}</span>
+      </div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-desc">${p.desc}</div>
+      <div class="card-footer">
+        <div class="card-status">
+          <div class="sdot ${p.status}"></div>${p.statusLabel}
+        </div>
+        <div class="card-arrow">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>`;
+
+            // Hover slideshow
+            const ss = card.querySelector('.slideshow');
+            const slides = card.querySelectorAll('.slide');
+            const dots = card.querySelectorAll('.dot');
+            let timer = null;
+
+            function adv() {
+                let i = +ss.dataset.idx;
+                slides[i].classList.remove('active'); dots[i]?.classList.remove('active');
+                i = (i + 1) % slides.length;
+                ss.dataset.idx = i;
+                slides[i].classList.add('active'); dots[i]?.classList.add('active');
+            }
+
+            if (slides.length > 1) {
+                card.addEventListener('mouseenter', () => { timer = setInterval(adv, 1500); });
+                card.addEventListener('mouseleave', () => {
+                    clearInterval(timer);
+                    slides.forEach((s, i) => { s.classList.toggle('active', i === 0); dots[i]?.classList.toggle('active', i === 0); });
+                    ss.dataset.idx = 0;
+                });
+            }
+
+            card.addEventListener('click', () => openModal(p));
+            return card;
+        }
+
+        function renderGrid(cat = 'all') {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            const list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+            if (!list.length) { grid.innerHTML = '<div class="empty">No products here yet.</div>'; return; }
+            list.forEach(p => grid.appendChild(buildCard(p)));
+        }
+        renderGrid();
+
+        function filter(cat, btn) {
+            document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderGrid(cat);
+        }
+
+        // ── MODAL ─────────────────────────────────────────────────────
+        let mCur = 0, mSlides = [], mDots = [];
+
+        function openModal(p) {
+            const gallery = document.getElementById('mgallery');
+            gallery.querySelectorAll('.mslide').forEach(e => e.remove());
+
+            mSlides = p.screenshots.map((src, i) => {
+                const d = document.createElement('div');
+                d.className = 'mslide' + (i === 0 ? ' active' : '');
+                d.innerHTML = `<img src="${src}" alt="" loading="lazy"/>`;
+                gallery.insertBefore(d, gallery.querySelector('.mgallery-nav'));
+                return d;
+            });
+
+            const dotsEl = document.getElementById('mgdots');
+            dotsEl.innerHTML = '';
+            mDots = p.screenshots.map((_, i) => {
+                const d = document.createElement('div');
+                d.className = 'mdot' + (i === 0 ? ' active' : '');
+                d.onclick = () => goSlide(i);
+                dotsEl.appendChild(d);
+                return d;
+            });
+
+            mCur = 0;
+            const show = p.screenshots.length > 1;
+            document.getElementById('gprev').style.display = show ? '' : 'none';
+            document.getElementById('gnext').style.display = show ? '' : 'none';
+
+            document.getElementById('micon').textContent = p.icon;
+            document.getElementById('mname').textContent = p.name;
+            document.getElementById('mtagline').textContent = p.tagline;
+
+            document.getElementById('mbadges').innerHTML =
+                `<span class="badge ${p.badge}">${p.badgeLabel}</span>
+     <span class="mstatus-badge">
+       <span class="sdot ${p.status}" style="display:inline-block;width:6px;height:6px;border-radius:50%;vertical-align:middle"></span>
+       ${p.statusLabel}
+     </span>`;
+
+            document.getElementById('mdesc').textContent = p.desc;
+
+            document.getElementById('mspecs').innerHTML =
+                p.specs.map(s => `<div class="spec"><div class="spec-label">${s.l}</div><div class="spec-val">${s.v}</div></div>`).join('');
+
+            document.getElementById('mtech').innerHTML =
+                p.tech.map(t => `<span class="ttag">${t}</span>`).join('');
+
+            const btn = document.getElementById('mbtn');
+            btn.href = p.url || '#';
+            btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open ${p.name}`;
+
+            document.getElementById('overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function goSlide(i) {
+            mSlides[mCur].classList.remove('active'); mDots[mCur]?.classList.remove('active');
+            mCur = ((i % mSlides.length) + mSlides.length) % mSlides.length;
+            mSlides[mCur].classList.add('active'); mDots[mCur]?.classList.add('active');
+        }
+
+        document.getElementById('gprev').onclick = () => goSlide(mCur - 1);
+        document.getElementById('gnext').onclick = () => goSlide(mCur + 1);
+
+        function closeModal() {
+            document.getElementById('overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function bgClose(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+
+</html>
