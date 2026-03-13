@@ -1,51 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - COSMICS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg: #0f1117; --surface: #181c26; --surface2: #1e2333;
-            --border: rgba(255, 255, 255, 0.08); --text: #e4e8f0;
-            --muted: #6b7590; --accent: #4f8ef7;
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 400; min-height: 100vh; }
-        header { padding: 24px 48px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo svg { width: 28px; height: 28px; }
-        .logo-name { font-family: 'Syne', sans-serif; font-size: 21px; font-weight: 800; color: var(--text); }
-        .logo-name span { color: var(--accent); }
-        .container { max-width: 800px; margin: 0 auto; padding: 48px 24px; line-height: 1.6; }
-        h1 { font-family: 'Syne', sans-serif; font-size: 32px; margin-bottom: 24px; }
-        h2 { font-size: 22px; margin-top: 32px; margin-bottom: 16px; color: var(--accent); }
-        p { color: var(--muted); margin-bottom: 16px; font-size: 16px; }
+
+        :root {
+            --bg: #0f1117;
+            --surface: #181c26;
+            --surface2: #1e2333;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e4e8f0;
+            --muted: #6b7590;
+            --accent: #4f8ef7;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 24px 48px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .logo-name span {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        p {
+            color: var(--muted);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
     </style>
 </head>
+
 <body>
-    <header>
-        <a class="logo" href="main.html">
-            <svg viewBox="0 0 28 28" fill="none">
-                <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
-                <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
-                <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
-            </svg>
-            <span class="logo-name">COS<span>MICS</span></span>
-        </a>
+    <header style="flex-direction: column; align-items: center; gap: 20px;">
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <a class="logo" href="index.html">
+                <svg viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
+                    <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
+                    <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
+                </svg>
+                <span class="logo-name">COS<span>MICS</span></span>
+            </a>
+        </div>
+
+        <nav
+            style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+            <a href="about-us.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">About Us</a>
+            <a href="purchase.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Purchase</a>
+            <a href="learning.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Learning
+                Center</a>
+            <a href="career.html" style="color: #4cd97b; text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='#6ee79b'" onmouseout="this.style.color='#4cd97b'">Careers</a>
+            <a href="resources.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Resources</a>
+        </nav>
     </header>
     <div class="container">
         <h1>About Me</h1>
-        <p>Hello! I am a passionate engineering student and the creator behind Cosmics. Exploring the realms of technology and constantly learning has always been a core part of who I am.</p>
-        
-        <h2>My Background</h2>
-        <p>Navigating through an engineering curriculum, I've developed a profound appreciation for solving complex problems through code. My journey involves breaking things, figuring out why they broke, and then building them better. This iterative process has honed my software engineering skills, driving me toward creating robust and beautifully designed tools.</p>
-        
-        <h2>The Purpose</h2>
-        <p>Working on projects like <strong>FocusGuard</strong> and <strong>Anya</strong> represents my deeper mission: to develop applications that genuinely improve people's digital and real-life experiences. Whether it's helping students focus better in a world filled with distractions or building intelligent AI companions that adapt to a user's needs, my projects aim to connect technology with meaningful utility.</p>
+        <p>Hello! I am a passionate engineering student and the creator behind Cosmics. Exploring the realms of
+            technology and constantly learning has always been a core part of who I am.</p>
 
-        <p>Thank you for stopping by and exploring my work. I hope you find as much value in using these tools as I found in building them.</p>
+        <h2>My Background</h2>
+        <p>Navigating through an engineering curriculum, I've developed a profound appreciation for solving complex
+            problems through code. My journey involves breaking things, figuring out why they broke, and then building
+            them better. This iterative process has honed my software engineering skills, driving me toward creating
+            robust and beautifully designed tools.</p>
+
+        <h2>The Purpose</h2>
+        <p>Working on projects like <strong>FocusGuard</strong> and <strong>Anya</strong> represents my deeper mission:
+            to develop applications that genuinely improve people's digital and real-life experiences. Whether it's
+            helping students focus better in a world filled with distractions or building intelligent AI companions that
+            adapt to a user's needs, my projects aim to connect technology with meaningful utility.</p>
+
+        <p>Thank you for stopping by and exploring my work. I hope you find as much value in using these tools as I
+            found in building them.</p>
     </div>
+
+    <footer
+        style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); font-size: 14px;">
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+            <a href="privacy-policy.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Privacy
+                Policy</a>
+            <a href="contact-us.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Contact Us</a>
+            <a href="terms-conditions.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Terms &
+                Conditions</a>
+        </div>
+        <p>&copy; 2026 Cosmics. All rights reserved.</p>
+    </footer>
 </body>
+
 </html>

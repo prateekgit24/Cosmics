@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources - COSMICS</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0f1117;
+            --surface: #181c26;
+            --surface2: #1e2333;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e4e8f0;
+            --muted: #6b7590;
+            --accent: #4f8ef7;
+
+            --t-course: #c084fc;
+            --t-video: #f97060;
+            --t-site: #4f8ef7;
+            --t-api: #f5a623;
+            --t-article: #4cd97b;
+            --t-tool: #ec4899;
+            --t-service: #14b8a6;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 24px 48px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .logo-name span {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: var(--muted);
+            margin-bottom: 40px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* SEARCH & CONTROLS */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 40px;
+            background: var(--surface);
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .controls-top {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        @media(min-width: 768px) {
+            .controls-top {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0 16px;
+            transition: border-color 0.2s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--accent);
+        }
+
+        .search-bar svg {
+            width: 20px;
+            height: 20px;
+            color: var(--muted);
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 14px 14px;
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .f-btn {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .f-btn:hover {
+            background: rgba(79, 142, 247, 0.1);
+            border-color: rgba(79, 142, 247, 0.3);
+        }
+
+        .f-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* GRID & CARDS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .section-wrapper {
+            margin-bottom: 48px;
+            width: 100%;
+        }
+
+        .section-header {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            color: var(--text);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .resource-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-img-wrap {
+            width: 100%;
+            height: 180px;
+            position: relative;
+            background: var(--surface2);
+            overflow: hidden;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .resource-card:hover .card-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .card-badges {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            right: 14px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 10;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .r-cost {
+            background: rgba(10, 12, 20, 0.85);
+            color: var(--text);
+            padding: 5px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        .r-cost.free {
+            color: #4cd97b;
+            border-color: rgba(76, 217, 123, 0.3);
+        }
+
+        .r-type {
+            background: rgba(10, 12, 20, 0.85);
+            padding: 5px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        .card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .r-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            color: var(--text);
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .r-desc {
+            color: var(--muted);
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .r-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: auto;
+        }
+
+        .r-topic {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .r-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .r-link:hover {
+            background: #3b7ee0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 142, 247, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted);
+            font-size: 18px;
+            width: 100%;
+            grid-column: 1 / -1;
+        }
+
+        /* NEW METADATA BADGES & BUTTONS */
+        .card-action-icon {
+            background: rgba(10, 12, 20, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--muted);
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+
+        .card-action-icon:hover {
+            background: rgba(10, 12, 20, 0.95);
+            transform: scale(1.1);
+            color: var(--text);
+        }
+
+        .card-action-icon.active-heart {
+            color: #ec4899;
+        }
+
+        .card-action-icon.active-heart:hover {
+            color: #fbcfe8;
+        }
+
+        .card-action-icon.star-icon {
+            cursor: default;
+        }
+
+        .card-action-icon.star-icon:hover {
+            transform: none;
+        }
+
+        .card-action-icon.active-star {
+            color: #f5a623;
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .stars {
+            color: #f5a623;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        .rating-val {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .author-rec {
+            font-size: 11px;
+            color: #14b8a6;
+            background: rgba(20, 184, 166, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            font-weight: 600;
+        }
+
+        /* PAGINATION */
+        .pagination-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-ctrls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-btn {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .per-page-sel {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 8px;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* MODAL EXTENDED VIEW */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 12, 20, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .overlay.show .modal {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-cover {
+            width: 100%;
+            height: 250px;
+            background: var(--surface2);
+            position: relative;
+        }
+
+        .modal-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(10, 12, 20, 0.7);
+            color: var(--text);
+            border: 1px solid var(--border);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .modal-body {
+            padding: 40px;
+            flex-grow: 1;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .modal-desc {
+            font-size: 16px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .modal-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        .modal-action:hover {
+            background: #3b7ee0;
+            box-shadow: 0 4px 15px rgba(79, 142, 247, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <header style="flex-direction: column; align-items: center; gap: 20px;">
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <a class="logo" href="index.html">
+                <svg viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
+                    <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
+                    <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
+                </svg>
+                <span class="logo-name">COS<span>MICS</span></span>
+            </a>
+        </div>
+
+        <nav
+            style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+            <a href="index.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Home</a>
+            <a href="about-us.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">About Us</a>
+            <a href="purchase.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Purchase</a>
+            <a href="learning.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Learning
+                Center</a>
+            <a href="career.html" style="color: #4cd97b; text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='#6ee79b'" onmouseout="this.style.color='#4cd97b'">Careers</a>
+            <a href="resources.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Resources</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Tech Resources & Tools</h1>
+        <p class="subtitle">A curated collection of free learning materials, courses, UI tools, APIs, and cloud services
+            to help you master modern tech.</p>
+
+        <div class="controls">
+            <div class="controls-top">
+                <div class="filter-group">
+                    <div class="filter-title">Topic</div>
+                    <div class="filter-buttons" id="topicFilters">
+                        <button class="f-btn active" data-val="All">All Topics</button>
+                        <button class="f-btn" data-val="AI/ML">AI & ML</button>
+                        <button class="f-btn" data-val="Web Dev">Web Dev</button>
+                        <button class="f-btn" data-val="Cloud/DevOps">Cloud & DevOps</button>
+                        <button class="f-btn" data-val="Design/Animation">Design & UI</button>
+                        <button class="f-btn" data-val="Jobs/Internships">Jobs & Internships</button>
+                    </div>
+                </div>
+
+                <div class="search-bar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search resources..." />
+                </div>
+            </div>
+
+            <div class="filter-group" style="padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <div class="filter-title">Resource Type</div>
+                <div class="filter-buttons" id="typeFilters">
+                    <button class="f-btn active" data-val="All">Any Type</button>
+                    <button class="f-btn" data-val="Course">📚 Courses</button>
+                    <button class="f-btn" data-val="Video">📺 Videos</button>
+                    <button class="f-btn" data-val="API">🔌 APIs</button>
+                    <button class="f-btn" data-val="Tool">🛠️ Tools</button>
+                    <button class="f-btn" data-val="Service">☁️ Services</button>
+                    <button class="f-btn" data-val="Article">📄 Articles</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="grid" id="resourceGrid">
+            <!-- Cards rendered via JS -->
+        </div>
+
+        <div id="paginationContainer"></div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="overlay" id="resourceModalOverlay" onclick="closeModal(event)">
+        <div class="modal" id="resourceModal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(event)">✕</button>
+            <div class="modal-cover">
+                <img id="m-img" src="" alt="Cover">
+            </div>
+            <div class="modal-body">
+                <div class="modal-tags" id="m-tags"></div>
+                <h3 class="modal-title" id="m-title"></h3>
+                <div class="card-rating" id="m-rating" style="margin-bottom: 20px;"></div>
+                <div class="modal-desc" id="m-desc"></div>
+                <a href="#" id="m-link" target="_blank" class="modal-action">
+                    Access Resource
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <p>adding courselist in quick</p>
+    <p><a
+            href="https://developers.google.com/machine-learning/crash-course">https://developers.google.com/machine-learning/crash-course</a>
+    </p>
+    <p>https://www.youtube.com/watch?v=kCc8FmEb1nY</p>
+    <p>done:: https://mylearn.oracle.com/ou/learning-path/mysql-explorer/79674</p>
+    <p>https://mylearn.oracle.com/ou/learning-path/become-an-oracle-ai-vector-search-professional/144854
+    </p>
+    <p>https://apps.techxchange.skillsnetwork.site/learning/course/course-v1:IBMSkillsNetwork+AI0146EN+v1/home
+    </p>
+    <p>https://www.skills.google/paths/1951/course_templates/1267</p>
+    <p>https://www.skills.google/catalog?keywords=&locale=</p>
+    <p>https://learn.microsoft.com/en-us/training/browse/</p>
+    <p>https://www.chromium.org/chromium-os/developer-library/guides/development/developer-guide/</p>
+    <p>jobs internship form</p>
+    <script>
+        // Mapping types to colors for absolute freedom in styling
+        const typeColors = {
+            "Course": "var(--t-course)",
+            "Video": "var(--t-video)",
+            "API": "var(--t-api)",
+            "Tool": "var(--t-tool)",
+            "Service": "var(--t-service)",
+            "Article": "var(--t-article)",
+            "Site": "var(--t-site)"
+        };
+
+        const RESOURCES = [
+            // AI & ML
+            { id: "r1", title: "Fast.ai Deep Learning", type: "Course", topic: "AI/ML", cost: "Free", costClass: "free", desc: "A robust, hands-on course to get started with building Artificial Intelligence models from scratch.", url: "https://course.fast.ai/", img: "https://placehold.co/600x320/1a1525/c084fc?text=Fast.ai", rating: 4.9, important: true, rec: "Editor's Choice", extDesc: "This is one of the most practical courses on the internet for deep learning. You will code models immediately." },
+            { id: "r2", title: "Google ML Crash Course", type: "Course", topic: "AI/ML", cost: "Free", costClass: "free", desc: "Google's fast-paced, practical introduction to machine learning featuring a series of lessons with video lectures.", url: "https://developers.google.com/machine-learning/crash-course", img: "https://placehold.co/600x320/1e2333/f5a623?text=Google+ML+Crash+Course", rating: 4.7, important: false, rec: "", extDesc: "Great for quick fundamental understanding directly from Google." },
+            { id: "r3", title: "Google Cloud AI Training", type: "Course", topic: "AI/ML", cost: "Free", costClass: "free", desc: "Learn directly from Google on fundamental to advanced concepts in machine learning and AI.", url: "https://cloud.google.com/learn/training/machinelearning-ai", img: "https://placehold.co/600x320/2b261e/4f8ef7?text=Google+Cloud+AI", rating: 4.6, important: false, rec: "Best for Cloud AI", extDesc: "Excellent resource if you plan to use Google Cloud APIs for AI." },
+            { id: "r4", title: "Oracle AI Vector Search", type: "Course", topic: "AI/ML", cost: "Free", costClass: "free", desc: "Become an Oracle AI Vector Search Professional and master database AI retrieval.", url: "https://mylearn.oracle.com/ou/learning-path/become-an-oracle-ai-vector-search-professional/144854", img: "https://placehold.co/600x320/281615/f97060?text=Oracle+AI+Search", rating: 4.4, important: false, rec: "", extDesc: "Niche course for implementing AI Vector search into Oracle databases." },
+            { id: "r5", title: "IBM Skills Network AI", type: "Course", topic: "AI/ML", cost: "Free", costClass: "free", desc: "IBM's specialized training for exploring modern Artificial Intelligence workflows.", url: "https://apps.techxchange.skillsnetwork.site/learning/course/course-v1:IBMSkillsNetwork+AI0146EN+v1/home", img: "https://placehold.co/600x320/121721/4f8ef7?text=IBM+Skills+AI", rating: 4.5, important: false, rec: "", extDesc: "Covers a wide range of enterprise AI skill sets." },
+            { id: "r6", title: "Andrej Karpathy Let's build GPT", type: "Video", topic: "AI/ML", cost: "Free", costClass: "free", desc: "A phenomenal YouTube walkthrough detailing how to build a GPT model from zero.", url: "https://www.youtube.com/watch?v=kCc8FmEb1nY", img: "https://placehold.co/600x320/2d1a1b/a97060?text=Karpathy+Video", rating: 5.0, important: true, rec: "Must Watch", extDesc: "A masterclass by former Director of AI at Tesla. You will build a transformer from the ground up." },
+            { id: "r7", title: "OpenAI Cookbook", type: "Article", topic: "AI/ML", cost: "Free", costClass: "free", desc: "The official examples, recipes, and guides for utilizing models like GPT-4 in your apps.", url: "https://cookbook.openai.com/", img: "https://placehold.co/600x320/18251e/4cd97b?text=OpenAI+Cookbook", rating: 4.8, important: false, rec: "", extDesc: "Your best reference manual when working with OpenAI's APIs." },
+
+            // WEB DEV & DEV
+            { id: "r8", title: "FreeCodeCamp", type: "Course", topic: "Web Dev", cost: "Free", costClass: "free", desc: "Thousands of hours of free interactive coding lessons covering HTML/CSS, JS, React, and Python.", url: "https://www.freecodecamp.org/", img: "https://placehold.co/600x320/131820/4f8ef7?text=FreeCodeCamp", rating: 4.9, important: true, rec: "Top Pick", extDesc: "The best place to start learning Web Development for free." },
+            { id: "r9", title: "Frontend Masters", type: "Course", topic: "Web Dev", cost: "Affordable", costClass: "", desc: "In-depth advanced frontend engineering and algorithmic courses taught by industry veterans.", url: "https://frontendmasters.com/", img: "https://placehold.co/600x320/1a1d1e/f5a623?text=Frontend+Masters", rating: 4.8, important: false, rec: "Best Advanced", extDesc: "Premium content. Recommended after you know the basics." },
+            { id: "r10", title: "Chromium Dev Guide", type: "Site", topic: "Web Dev", cost: "Free", costClass: "free", desc: "The official Chromium developer guide for learning large scale open source architecture.", url: "https://www.chromium.org/chromium-os/developer-library/guides/development/developer-guide/", img: "https://placehold.co/600x320/1a2125/4f8ef7?text=Chromium+Dev", rating: 4.2, important: false, rec: "", extDesc: "Deep dive into browser engineering and Chromium OS." },
+
+            // CLOUD & DEVOPS
+            { id: "r11", title: "Google Cloud Console", type: "API", topic: "Cloud/DevOps", cost: "Freemium", costClass: "", desc: "Access Google's robust infrastructure, databases, and powerful APIs directly.", url: "https://console.cloud.google.com/", img: "https://placehold.co/600x320/1c2331/4f8ef7?text=Google+Console", rating: 4.7, important: false, rec: "", extDesc: "The core console for all GCP services." },
+            { id: "r12", title: "Google Skills Cloud Path", type: "Course", topic: "Cloud/DevOps", cost: "Free", costClass: "free", desc: "Learn directly from Google via their official skills portal for Cloud mastery.", url: "https://www.skills.google/paths/1951/course_templates/1267", img: "https://placehold.co/600x320/1a1b26/f5a623?text=Google+Skills", rating: 4.6, important: false, rec: "", extDesc: "The official certification training paths from Google themselves." },
+            { id: "r13", title: "AWS Free Tier", type: "Service", topic: "Cloud/DevOps", cost: "Free", costClass: "free", desc: "Explore over 100 AWS products with an always-free tier to host your databases and backend.", url: "https://aws.amazon.com/free/", img: "https://placehold.co/600x320/282015/f5a623?text=AWS+Free+Tier", rating: 4.8, important: true, rec: "Industry Standard", extDesc: "Must-know for backend devs. The free tier gives a massive jumpstart for projects." },
+            { id: "r14", title: "Microsoft Learn", type: "Site", topic: "Cloud/DevOps", cost: "Free", costClass: "free", desc: "The official hub for interactive learning paths on Azure, .NET, and Microsoft tech.", url: "https://learn.microsoft.com/en-us/training/browse/", img: "https://placehold.co/600x320/151e28/4f8ef7?text=Microsoft+Learn", rating: 4.7, important: false, rec: "", extDesc: "Interactive Azure and .NET learning environments right inside the browser." },
+            { id: "r15", title: "Oracle Education", type: "Course", topic: "Cloud/DevOps", cost: "Free/Paid", costClass: "", desc: "Extensive certification and training programs centered around Cloud Infrastructure.", url: "https://www.oracle.com/in/education", img: "https://placehold.co/600x320/281615/f97060?text=Oracle+Education", rating: 4.3, important: false, rec: "", extDesc: "Deep dive into Oracle Cloud offerings." },
+            { id: "r16", title: "Oracle MySQL Explorer", type: "Course", topic: "Cloud/DevOps", cost: "Free", costClass: "free", desc: "Learn the fundamentals of MySQL directly from Oracle to manage databases.", url: "https://mylearn.oracle.com/ou/learning-path/mysql-explorer/79674", img: "https://placehold.co/600x320/182528/e4e8f0?text=MySQL+Explorer", rating: 4.5, important: false, rec: "", extDesc: "Fantastic for learning standard SQL databases directly from the source." },
+            { id: "r17", title: "Render Deployment", type: "Service", topic: "Cloud/DevOps", cost: "Freemium", costClass: "free", desc: "A unified cloud platform to easily build and run all your web apps and static sites.", url: "https://render.com/", img: "https://placehold.co/600x320/151121/c084fc?text=Render", rating: 4.8, important: true, rec: "Top Deployment", extDesc: "Easiest hosting for node servers, static sites, and Postgres DBs." },
+            { id: "r18", title: "Railway", type: "Service", topic: "Cloud/DevOps", cost: "Freemium", costClass: "", desc: "Create, monitor, and deploy software in an instant. Connects natively to your GitHub repositories.", url: "https://railway.app/", img: "https://placehold.co/600x320/111111/e4e8f0?text=Railway", rating: 4.7, important: false, rec: "", extDesc: "Instant infrastructure for full-stack developers." },
+
+            // DESIGN, UI & ANIMATION
+            { id: "r19", title: "Figma", type: "Tool", topic: "Design/Animation", cost: "Free", costClass: "free", desc: "The industry standard collaborative interface design tool. Access thousands of community UI kits.", url: "https://www.figma.com/", img: "https://placehold.co/600x320/1a1215/ec4899?text=Figma", rating: 4.9, important: true, rec: "Industry Standard", extDesc: "You absolutely need to know Figma if you are doing any modern UI/UX." },
+            { id: "r20", title: "Canva", type: "Tool", topic: "Design/Animation", cost: "Freemium", costClass: "free", desc: "A wonderfully simple tool to design presentations, social media graphics, and quick assets.", url: "https://www.canva.com/", img: "https://placehold.co/600x320/151f28/4f8ef7?text=Canva", rating: 4.8, important: false, rec: "", extDesc: "Great for fast asset generation and marketers." },
+            { id: "r21", title: "Unity", type: "Tool", topic: "Design/Animation", cost: "Free", costClass: "free", desc: "Develop immersive 2D, 3D, and VR games and graphical applications using C#.", url: "https://unity.com/", img: "https://placehold.co/600x320/1a1a1a/e4e8f0?text=Unity", rating: 4.6, important: false, rec: "", extDesc: "The go-to engine for indie game developers." },
+            { id: "r22", title: "PixiJS", type: "Tool", topic: "Design/Animation", cost: "Free", costClass: "free", desc: "The HTML5 Creation Engine. The fastest and most flexible 2D WebGL renderer.", url: "https://pixijs.com/", img: "https://placehold.co/600x320/22151e/ec4899?text=PixiJS", rating: 4.5, important: false, rec: "", extDesc: "Used heavily for beautiful 2D web animations and simple browser games." },
+
+            // JOBS & INTERNSHIPS
+            { id: "r23", title: "Cosmics Internship Form", type: "Site", topic: "Jobs/Internships", cost: "Free", costClass: "free", desc: "Apply directly for software engineering and design internships at our fast-growing startup.", url: "career.html", img: "https://placehold.co/600x320/112518/4cd97b?text=Cosmics+Internships", rating: 5.0, important: true, rec: "Join Us!", extDesc: "We are heavily recruiting right now for highly motivated engineering students." }
+        ];
+
+        let wishlist = JSON.parse(localStorage.getItem('cosmics_wishlist')) || [];
+
+        const grid = document.getElementById('resourceGrid');
+        const searchInput = document.getElementById('searchInput');
+
+        let currentTopic = 'All';
+        let currentType = 'All';
+        let currentPage = 1;
+        let itemsPerPage = 30;
+
+        function toggleWishlist(e, id) {
+            e.stopPropagation(); // prevent modal opening
+            if (wishlist.includes(id)) {
+                wishlist = wishlist.filter(item => item !== id);
+                e.currentTarget.classList.remove('active-heart');
+                e.currentTarget.querySelector('svg').setAttribute('fill', 'none');
+            } else {
+                wishlist.push(id);
+                e.currentTarget.classList.add('active-heart');
+                e.currentTarget.querySelector('svg').setAttribute('fill', 'currentColor');
+            }
+            localStorage.setItem('cosmics_wishlist', JSON.stringify(wishlist));
+        }
+
+        function openModal(id) {
+            const r = RESOURCES.find(x => x.id === id);
+            if (!r) return;
+
+            document.getElementById('m-img').src = r.img;
+            document.getElementById('m-title').textContent = r.title;
+            document.getElementById('m-desc').textContent = r.extDesc || r.desc;
+            document.getElementById('m-link').href = r.url;
+
+            let badges = `<span class="r-type" style="color: ${typeColors[r.type] || 'var(--text)'}; padding: 4px 10px; border-radius: 100px; background: rgba(10,12,20,0.85);">${r.type}</span>`;
+            badges += `<span class="r-cost ${r.costClass}" style="padding: 4px 10px; border-radius: 100px; background: rgba(10,12,20,0.85); margin-left:8px;">${r.cost}</span>`;
+            document.getElementById('m-tags').innerHTML = badges;
+
+            let ratingHtml = `<div class="stars">${'★'.repeat(Math.round(r.rating))}${'☆'.repeat(5 - Math.round(r.rating))}</div>`;
+            ratingHtml += `<span class="rating-val">${r.rating.toFixed(1)}</span>`;
+            if (r.rec) {
+                ratingHtml += `<span class="author-rec">${r.rec}</span>`;
+            }
+            document.getElementById('m-rating').innerHTML = ratingHtml;
+
+            document.getElementById('resourceModalOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('resourceModalOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function renderPaginationControls(totalItems) {
+            const paginationContainer = document.getElementById('paginationContainer');
+            if (totalItems <= itemsPerPage && currentPage === 1) { // Only hide if there's truly 1 page
+                paginationContainer.innerHTML = `
+                <div class="pagination-bar" style="justify-content: flex-end;">
+                    <div class="page-ctrls">
+                        <select class="per-page-sel" onchange="itemsPerPage = parseInt(this.value); currentPage = 1; renderResources();">
+                            <option value="10" ${itemsPerPage === 10 ? 'selected' : ''}>10 per page</option>
+                            <option value="20" ${itemsPerPage === 20 ? 'selected' : ''}>20 per page</option>
+                            <option value="30" ${itemsPerPage === 30 ? 'selected' : ''}>30 per page</option>
+                            <option value="50" ${itemsPerPage === 50 ? 'selected' : ''}>50 per page</option>
+                        </select>
+                    </div>
+                </div>`;
+                return;
+            }
+
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+            let html = `
+                <div class="pagination-bar">
+                    <div class="page-info">
+                        Showing ${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems} resources
+                    </div>
+                    <div class="page-ctrls">
+                        <select class="per-page-sel" onchange="itemsPerPage = parseInt(this.value); currentPage = 1; renderResources();">
+                            <option value="10" ${itemsPerPage === 10 ? 'selected' : ''}>10 per page</option>
+                            <option value="20" ${itemsPerPage === 20 ? 'selected' : ''}>20 per page</option>
+                            <option value="30" ${itemsPerPage === 30 ? 'selected' : ''}>30 per page</option>
+                            <option value="50" ${itemsPerPage === 50 ? 'selected' : ''}>50 per page</option>
+                        </select>
+                        <button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="currentPage--; renderResources();">❮</button>
+                        <span style="font-size: 14px; font-weight: 600;">Page ${currentPage} of ${totalPages}</span>
+                        <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="currentPage++; renderResources();">❯</button>
+                    </div>
+                </div>
+            `;
+            paginationContainer.innerHTML = html;
+        }
+
+        function renderResources() {
+            const container = document.getElementById('resourceGrid');
+            container.innerHTML = '';
+            container.className = '';
+
+            const query = searchInput.value.toLowerCase();
+
+            const filtered = RESOURCES.filter(r => {
+                const matchesTopic = currentTopic === 'All' || r.topic === currentTopic;
+                const matchesType = currentType === 'All' || r.type === currentType;
+                const matchesSearch = r.title.toLowerCase().includes(query) || r.desc.toLowerCase().includes(query);
+                return matchesTopic && matchesType && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="empty-state">No resources found matching your current filters.</div>`;
+                document.getElementById('paginationContainer').innerHTML = '';
+                return;
+            }
+
+            // Paginate the filtered array
+            const totalItems = filtered.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const paginatedItems = filtered.slice(startIndex, startIndex + itemsPerPage);
+
+            // Group resources by Topic to show rich UI differential
+
+            const groupedByTopic = {};
+            //filtered.forEach(r => {
+            paginatedItems.forEach(r => {
+                if (!groupedByTopic[r.topic]) groupedByTopic[r.topic] = [];
+                groupedByTopic[r.topic].push(r);
+            });
+
+            const topicIcons = {
+                "AI/ML": "🤖",
+                "Web Dev": "💻",
+                "Cloud/DevOps": "☁️",
+                "Design/Animation": "🎨",
+                "Jobs/Internships": "💼"
+            };
+
+            for (const [topic, items] of Object.entries(groupedByTopic)) {
+                const section = document.createElement('div');
+                section.className = 'section-wrapper';
+
+                let html = `<h2 class="section-header">${topicIcons[topic] || "📌"} ${topic}</h2><div class="grid">`;
+
+                items.forEach(r => {
+                    const dynamicColor = typeColors[r.type] || "var(--text)";
+                    html += `
+                        <div class="resource-card" onclick="openModal('${r.id}')" style="cursor: pointer;">
+                            <div class="card-img-wrap">
+                                <img src="${r.img}" alt="${r.title}">
+
+                                <div class="card-badges">
+                                    <span class="r-type" style="color: ${dynamicColor};">${r.type}</span>
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <span class="r-cost ${r.costClass}">${r.cost}</span>
+                                        <div class="card-action-icon star-icon ${r.important ? 'active-star' : ''}" title="Important">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="${r.important ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        </div>
+                                        <div class="card-action-icon ${wishlist.includes(r.id) ? 'active-heart' : ''}" onclick="toggleWishlist(event, '${r.id}')" title="Add to Wishlist">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="${wishlist.includes(r.id) ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="r-title">${r.title}</div>
+                                
+                                <div class="card-rating">
+                                    <div class="stars">${'★'.repeat(Math.round(r.rating))}${'☆'.repeat(5 - Math.round(r.rating))}</div>
+                                    <span class="rating-val">${r.rating.toFixed(1)}</span>
+                                    ${r.rec ? `<span class="author-rec">${r.rec}</span>` : ''}
+                                </div>
+
+                                <div class="r-desc">${r.desc}</div>
+                                <div class="r-bottom">
+                                    <span class="r-topic">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                        ${r.topic}
+                                    </span>
+                                    <a href="${r.url}" target="_blank" rel="noopener" class="r-link" onclick="event.stopPropagation()">
+                                        Visit
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                section.innerHTML = html;
+                container.appendChild(section);
+            }
+
+            renderPaginationControls(totalItems);
+        }
+
+        // Search Input
+        searchInput.addEventListener('input', renderResources);
+
+        // Filters Handling
+        document.querySelectorAll('#topicFilters .f-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#topicFilters .f-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentTopic = btn.dataset.val;
+                renderResources();
+            });
+        });
+
+        document.querySelectorAll('#typeFilters .f-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#typeFilters .f-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentType = btn.dataset.val;
+                renderResources();
+            });
+        });
+
+        // Initialize display
+        renderResources();
+    </script>
+
+    <footer
+        style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); font-size: 14px;">
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+            <a href="privacy-policy.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Privacy
+                Policy</a>
+            <a href="contact-us.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Contact Us</a>
+            <a href="terms-conditions.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Terms &
+                Conditions</a>
+        </div>
+        <p>&copy; 2026 Cosmics. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

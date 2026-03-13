@@ -291,6 +291,7 @@
             line-height: 1.55;
             display: -webkit-box;
             -webkit-line-clamp: 2;
+            line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -687,16 +688,35 @@
 
 <body>
 
-    <header>
-        <a class="logo" href="#">
-            <svg viewBox="0 0 28 28" fill="none">
-                <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
-                <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
-                <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
-            </svg>
-            <span class="logo-name">COS<span>MICS</span></span>
-        </a>
-        <nav>
+    <header style="flex-direction: column; align-items: center; gap: 20px;">
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <a class="logo" href="#">
+                <svg viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
+                    <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
+                    <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
+                </svg>
+                <span class="logo-name">COS<span>MICS</span></span>
+            </a>
+        </div>
+
+        <nav
+            style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+            <a href="about-us.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">About Us</a>
+            <a href="purchase.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Purchase</a>
+            <a href="learning.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Learning
+                Center</a>
+            <a href="career.html" style="color: #4cd97b; text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='#6ee79b'" onmouseout="this.style.color='#4cd97b'">Careers</a>
+            <a href="resources.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Resources</a>
+        </nav>
+
+        <nav
+            style="display: flex; justify-content: center; width: 100%; border-top: 1px solid var(--border); padding-top: 18px;">
             <button class="pill active" onclick="filter('all',this)">All</button>
             <button class="pill" onclick="filter('web',this)">Web</button>
             <button class="pill" onclick="filter('game',this)">Games</button>
@@ -753,12 +773,10 @@
 
     <footer
         style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); font-size: 14px;">
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 10px;">
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
             <a href="privacy-policy.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
                 onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Privacy
                 Policy</a>
-            <a href="about-us.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">About Us</a>
             <a href="contact-us.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
                 onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Contact Us</a>
             <a href="terms-conditions.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
@@ -775,207 +793,224 @@
         const PRODUCTS = [
             {
                 id: 1, category: 'web',
-                name: 'Falcon Mart', icon: '🛒',
-                tagline: 'Full-stack e-commerce platform',
+                name: 'Ecommerce Hub', icon: '🛒',
+                tagline: 'Full-stack online storefront',
                 badge: 'bweb', badgeLabel: 'Web App',
                 status: 'slive', statusLabel: 'Live',
-                desc: 'A complete e-commerce solution with real-time inventory, multi-vendor support, secure Stripe checkout, and a rich admin dashboard. Handles thousands of concurrent users with sub-100ms response times.',
+                desc: 'A complete e-commerce solution featuring real-time inventory management, secure payments, and an administrative dashboard for seamless store management.',
                 specs: [
                     { l: 'Platform', v: 'Web (Browser)' },
                     { l: 'Category', v: 'E-Commerce' },
-                    { l: 'Version', v: '2.4.1' },
-                    { l: 'Active Users', v: '12,000+' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'Full-Stack' },
                 ],
-                tech: ['Next.js', 'PostgreSQL', 'Stripe', 'Redis', 'Vercel'],
+                tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
                 screenshots: [
-                    'https://placehold.co/660x260/1e2333/4f8ef7?text=Home+Page',
-                    'https://placehold.co/660x260/1a2040/f5a623?text=Product+Listing',
-                    'https://placehold.co/660x260/1e2333/4cd97b?text=Checkout+Flow',
+                    'https://placehold.co/660x260/1e2333/4f8ef7?text=Storefront',
+                    'https://placehold.co/660x260/1e2333/4cd97b?text=Checkout'
                 ],
-                url: 'https://example.com'
+                url: '#'
             },
             {
-                id: 2, category: 'game',
-                name: 'Mini-Games', icon: '🎮',
-                tagline: 'Browser-based space shooter',
-                badge: 'bgame', badgeLabel: 'Game',
+                id: 2, category: 'web',
+                name: 'Books Portal', icon: '📚',
+                tagline: 'Digital library and bookstore',
+                badge: 'bweb', badgeLabel: 'Web App',
                 status: 'slive', statusLabel: 'Live',
-                desc: 'Fast-paced space shooter playable entirely in the browser. Procedurally generated enemy waves, a global leaderboard, real-time multiplayer arenas, and unlockable ships. No download required.',
+                desc: 'A comprehensive digital library where users can browse, read, and purchase books. Includes a powerful search engine and personalized reading recommendations.',
                 specs: [
-                    { l: 'Platform', v: 'Browser' },
-                    { l: 'Genre', v: 'Action / Shooter' },
-                    { l: 'Mode', v: 'Single & Multi-player' },
-                    { l: 'Players', v: '5,000+' },
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Books & Reference' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'Frontend/Backend' },
                 ],
-                tech: ['Canvas API', 'WebSocket', 'Node.js', 'Socket.io'],
+                tech: ['Next.js', 'PostgreSQL', 'Tailwind CSS'],
                 screenshots: [
-                    'https://placehold.co/660x260/0d1020/f97060?text=Gameplay',
-                    'https://placehold.co/660x260/0d1020/f5a623?text=Leaderboard',
+                    'https://placehold.co/660x260/1a2040/f5a623?text=Book+Library',
+                    'https://placehold.co/660x260/1a2040/f97060?text=Reading+View'
                 ],
-                url: 'https://minigames.cosmics.software'
+                url: '#'
             },
             {
                 id: 3, category: 'web',
-                name: 'Falcon Fit', icon: '💪',
-                tagline: 'AI-powered fitness tracker',
+                name: 'Chat App', icon: '💬',
+                tagline: 'Real-time messaging platform',
                 badge: 'bweb', badgeLabel: 'Web App',
-                status: 'sbeta', statusLabel: 'Beta',
-                desc: 'Smart fitness platform with AI-generated workout plans tailored to your goals. Log calories, track progress with charts, follow guided routines, and get intelligent coaching that adapts to your pace.',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A fast, real-time communication platform supporting direct messaging, group chats, file sharing, and instant read receipts.',
                 specs: [
-                    { l: 'Platform', v: 'Web + Mobile' },
-                    { l: 'Category', v: 'Health & Fitness' },
-                    { l: 'Version', v: '1.0 Beta' },
-                    { l: 'Users', v: '1,200+' },
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Communication' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'Real-Time' },
                 ],
-                tech: ['React', 'Python', 'OpenAI API', 'Chart.js', 'Supabase'],
+                tech: ['React', 'Socket.io', 'Node.js', 'Express'],
                 screenshots: [
-                    'https://placehold.co/660x260/1a2333/4f8ef7?text=Dashboard',
-                    'https://placehold.co/660x260/1e1a33/c084fc?text=Workout+Plan',
-                    'https://placehold.co/660x260/1a2333/4cd97b?text=Progress+Charts',
+                    'https://placehold.co/660x260/0d1020/4f8ef7?text=Chat+Interface',
+                    'https://placehold.co/660x260/0d1020/4cd97b?text=Group+Chat'
                 ],
-                url: 'https://example.com'
+                url: '#'
             },
             {
                 id: 4, category: 'web',
-                name: 'Learn Hub', icon: '📚',
-                tagline: 'Interactive education platform',
+                name: 'Edu Learn', icon: '🎓',
+                tagline: 'Interactive educational platform',
                 badge: 'bweb', badgeLabel: 'Web App',
                 status: 'slive', statusLabel: 'Live',
-                desc: 'Video-first learning platform with interactive quizzes, certificates, and an adaptive engine that personalizes your learning path. Instructors build courses with a drag-and-drop editor. Students earn verifiable credentials.',
+                desc: 'An online educational site offering video courses, interactive quizzes, and progress tracking for students all around the globe.',
                 specs: [
                     { l: 'Platform', v: 'Web' },
                     { l: 'Category', v: 'Education' },
-                    { l: 'Courses', v: '200+' },
-                    { l: 'Learners', v: '8,500+' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'E-Learning' },
                 ],
-                tech: ['Vue.js', 'Video.js', 'MongoDB', 'Express', 'AWS S3'],
+                tech: ['Vue.js', 'Firebase', 'Express'],
                 screenshots: [
-                    'https://placehold.co/660x260/1a2033/f5a623?text=Course+Library',
-                    'https://placehold.co/660x260/1e2033/4f8ef7?text=Video+Player',
+                    'https://placehold.co/660x260/1e2033/c084fc?text=Course+Dashboard',
+                    'https://placehold.co/660x260/1e2033/f5a623?text=Video+Player'
                 ],
-                url: 'https://example.com'
+                url: '#'
             },
             {
-                id: 5, category: 'ext',
-                name: 'Falcon Shield', icon: '🛡️',
-                tagline: 'Privacy & ad blocker extension',
-                badge: 'bext', badgeLabel: 'Extension',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'Chrome extension that silently blocks trackers, ads, and malicious scripts with zero performance overhead. Real-time threat counter, per-site allowlisting, and privacy reports. 4.9 stars on the Web Store.',
-                specs: [
-                    { l: 'Platform', v: 'Chrome / Edge' },
-                    { l: 'Category', v: 'Privacy & Security' },
-                    { l: 'Version', v: '3.1.0' },
-                    { l: 'Installs', v: '22,000+' },
-                ],
-                tech: ['Manifest V3', 'Chrome APIs', 'Vanilla JS', 'WebAssembly'],
-                screenshots: [
-                    'https://placehold.co/660x260/1a1e2a/4cd97b?text=Shield+Popup',
-                    'https://placehold.co/660x260/1a1e2a/4f8ef7?text=Privacy+Report',
-                ],
-                url: 'https://example.com'
-            },
-            {
-                id: 6, category: 'ext',
-                name: 'Quick Notes', icon: '📝',
-                tagline: 'Instant notes from any tab',
-                badge: 'bext', badgeLabel: 'Extension',
-                status: 'sbeta', statusLabel: 'Beta',
-                desc: 'Press a shortcut, write a note, done. Lives in your browser toolbar and syncs everything to the cloud instantly. Supports Markdown, tags, pinning, and full-text search across all your notes.',
-                specs: [
-                    { l: 'Platform', v: 'Chrome' },
-                    { l: 'Category', v: 'Productivity' },
-                    { l: 'Version', v: '0.9 Beta' },
-                    { l: 'Installs', v: '3,400+' },
-                ],
-                tech: ['Chrome APIs', 'Firebase', 'Markdown', 'JS'],
-                screenshots: [
-                    'https://placehold.co/660x260/1e1a2a/c084fc?text=Note+Editor',
-                ],
-                url: 'https://example.com'
-            },
-            {
-                id: 7, category: 'os',
-                name: 'Falcon OS', icon: '💻',
-                tagline: 'Mini OS built with web technologies',
-                badge: 'bos', badgeLabel: 'OS',
-                status: 'sbeta', statusLabel: 'Beta',
-                desc: 'A fully functional mini operating system featuring a custom shell, file manager, text editor, media player, settings panel, and a built-in app store — all built with web technologies wrapped in Electron.',
-                specs: [
-                    { l: 'Platform', v: 'Windows / macOS / Linux' },
-                    { l: 'Category', v: 'Operating System' },
-                    { l: 'Size', v: '~85 MB' },
-                    { l: 'Version', v: '0.7 Beta' },
-                ],
-                tech: ['Electron', 'Node.js', 'React', 'C++', 'SQLite'],
-                screenshots: [
-                    'https://placehold.co/660x260/0d1117/4cd97b?text=Desktop',
-                    'https://placehold.co/660x260/0d1117/4f8ef7?text=File+Manager',
-                    'https://placehold.co/660x260/0d1117/f5a623?text=Terminal',
-                ],
-                url: 'https://example.com'
-            },
-            {
-                id: 8, category: 'game',
+                id: 5, category: 'game',
                 name: 'Ghost Killer', icon: '👻',
-                tagline: 'Ghost Killer',
+                tagline: 'Fast-paced arcade shooter',
                 badge: 'bgame', badgeLabel: 'Game',
                 status: 'slive', statusLabel: 'Live',
-                desc: 'Ghost Killer is a browser-based game where you have to kill ghosts using your mouse.',
+                desc: 'A wildly entertaining browser-based game where players must test their reflexes by eliminating incoming ghosts using just their mouse.',
                 specs: [
                     { l: 'Platform', v: 'Browser' },
-                    { l: 'Genre', v: 'Strategy / Board' },
-                    { l: 'Mode', v: 'vs AI / Online PvP' },
-                    { l: 'Players', v: '9,000+' },
+                    { l: 'Genre', v: 'Arcade / Action' },
+                    { l: 'Input', v: 'Mouse' },
+                    { l: 'Status', v: 'Active' },
                 ],
-                tech: ['React', 'Stockfish WASM', 'WebRTC', 'Socket.io'],
+                tech: ['HTML5 Canvas', 'Vanilla JS', 'CSS Animations'],
                 screenshots: [
-                    'https://placehold.co/660x260/101820/f5a623?text=Chess+Board',
-                    'https://placehold.co/660x260/0d1520/4f8ef7?text=ELO+Ranking',
+                    'https://placehold.co/660x260/101820/f97060?text=Menu+Screen',
+                    'https://placehold.co/660x260/101820/f5a623?text=Killing+Ghosts'
                 ],
                 url: 'https://ghost-game-g417.onrender.com/'
             },
             {
-                id: 9, category: 'app',
-                name: 'Falcon Desk', icon: '📊',
-                tagline: 'Desktop productivity suite',
-                badge: 'bapp', badgeLabel: 'App',
+                id: 6, category: 'game',
+                name: 'Minigames Hub', icon: '🎮',
+                tagline: 'Collection of browser games',
+                badge: 'bgame', badgeLabel: 'Game',
                 status: 'slive', statusLabel: 'Live',
-                desc: 'All-in-one desktop app combining task manager, calendar, note-taking, habit tracker, and Pomodoro timer. Works fully offline. Clean, distraction-free interface designed for deep focus sessions.',
+                desc: 'A central hub featuring a constantly updating collection of small, highly optimized minigames playable directly in the browser with no downloads.',
                 specs: [
-                    { l: 'Platform', v: 'Windows / macOS' },
-                    { l: 'Category', v: 'Productivity' },
-                    { l: 'Size', v: '~60 MB' },
-                    { l: 'Version', v: '2.0.3' },
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Various' },
+                    { l: 'Type', v: 'Collection' },
+                    { l: 'Status', v: 'Active' },
                 ],
-                tech: ['Electron', 'React', 'SQLite', 'Tailwind'],
+                tech: ['JavaScript', 'HTML5 WebGL', 'Howler.js'],
                 screenshots: [
-                    'https://placehold.co/660x260/131820/c084fc?text=Dashboard',
-                    'https://placehold.co/660x260/131820/4f8ef7?text=Task+Manager',
-                    'https://placehold.co/660x260/131820/4cd97b?text=Pomodoro',
+                    'https://placehold.co/660x260/0d1020/4f8ef7?text=Game+Selection',
+                    'https://placehold.co/660x260/0d1020/4cd97b?text=Gameplay'
                 ],
-                url: 'https://example.com'
+                url: '#'
+            },
+            {
+                id: 7, category: 'game',
+                name: 'Bencard', icon: '🃏',
+                tagline: 'Strategic card battler',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'An intense, strategic card game where you build your deck, devise strategies, and outsmart your opponents in deep, tactical rounds.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Card / Strategy' },
+                    { l: 'Multiplayer', v: 'Yes' },
+                    { l: 'Status', v: 'Active' },
+                ],
+                tech: ['React', 'Socket.io', 'Node.js'],
+                screenshots: [
+                    'https://placehold.co/660x260/231e33/f5a623?text=Deck+Builder',
+                    'https://placehold.co/660x260/231e33/c084fc?text=Card+Battle'
+                ],
+                url: '#'
+            },
+            {
+                id: 8, category: 'game',
+                name: 'Story Game', icon: '📖',
+                tagline: 'Interactive text adventure',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A beautifully written interactive fiction game where your choices shape the narrative. Explore multiple endings and deep character arcs.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'RPG / Text Adventure' },
+                    { l: 'Endings', v: 'Multiple' },
+                    { l: 'Status', v: 'Active' },
+                ],
+                tech: ['HTML/CSS', 'JavaScript', 'JSON Data'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a1a24/e4e8f0?text=Chapter+1',
+                    'https://placehold.co/660x260/1a1a24/e4e8f0?text=Decision+Point'
+                ],
+                url: '#'
+            },
+            {
+                id: 9, category: 'ext',
+                name: 'Browser Extension', icon: '🧩',
+                tagline: 'Helpful browser utility',
+                badge: 'bext', badgeLabel: 'Extension',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A robust Chrome extension built to improve productivity and provide quick utility right from your browser toolbar.',
+                specs: [
+                    { l: 'Platform', v: 'Chrome' },
+                    { l: 'Category', v: 'Productivity' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'Utility' },
+                ],
+                tech: ['Manifest V3', 'JavaScript', 'CSS'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a1e2a/4f8ef7?text=Extension+Popup',
+                    'https://placehold.co/660x260/1a1e2a/4cd97b?text=Settings'
+                ],
+                url: '#'
             },
             {
                 id: 10, category: 'app',
-                name: 'Mobile Sync', icon: '📱',
-                tagline: 'Falcon ecosystem on your phone',
+                name: 'AI Chatbot', icon: '🤖',
+                tagline: 'Intelligent conversational AI',
                 badge: 'bapp', badgeLabel: 'App',
-                status: 'sbeta', statusLabel: 'Beta',
-                desc: 'Cross-platform mobile companion for all Falcon products. Access notes, tasks, and progress from anywhere. Get smart push notifications and sync data instantly across all your devices.',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'An advanced, context-aware AI conversational partner designed to assist with coding, writing, and general problem solving.',
                 specs: [
-                    { l: 'Platform', v: 'iOS & Android' },
-                    { l: 'Category', v: 'Productivity' },
-                    { l: 'Version', v: '1.1 Beta' },
-                    { l: 'Downloads', v: '2,100+' },
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Artificial Intelligence' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Models', v: 'LLMs' },
                 ],
-                tech: ['React Native', 'Expo', 'Firebase', 'Redux'],
+                tech: ['React', 'Python', 'OpenAI API'],
                 screenshots: [
-                    'https://placehold.co/660x260/1a1e33/4f8ef7?text=App+Home',
-                    'https://placehold.co/660x260/1a1e33/4cd97b?text=Notifications',
+                    'https://placehold.co/660x260/131820/c084fc?text=Chat+UI',
+                    'https://placehold.co/660x260/131820/4f8ef7?text=AI+Settings'
                 ],
-                url: 'https://example.com'
+                url: '#'
             },
+            {
+                id: 11, category: 'os',
+                name: 'Mini OS', icon: '💻',
+                tagline: 'Web-based desktop environment',
+                badge: 'bos', badgeLabel: 'OS',
+                status: 'sbeta', statusLabel: 'Beta',
+                desc: 'A fully functional mini operating system featuring a custom shell, file manager, and built-in apps, all existing within the browser.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Category', v: 'Virtual OS' },
+                    { l: 'Status', v: 'Beta' },
+                    { l: 'Type', v: 'Web Desktop' },
+                ],
+                tech: ['JavaScript', 'HTML5', 'CSS3', 'Local Storage'],
+                screenshots: [
+                    'https://placehold.co/660x260/0d1117/4cd97b?text=Desktop+Screen',
+                    'https://placehold.co/660x260/0d1117/f5a623?text=File+System'
+                ],
+                url: '#'
+            }
         ];
 
         // ── CARD BUILDER ──────────────────────────────────────────────
@@ -987,6 +1022,7 @@
             const slidesHTML = p.screenshots.map((src, i) =>
                 `<div class="slide ${i === 0 ? 'active' : ''}"><img src="${src}" alt="" loading="lazy"/></div>`
             ).join('');
+
 
             const dotsHTML = p.screenshots.length > 1
                 ? `<div class="slide-dots">${p.screenshots.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}"></div>`).join('')}</div>`

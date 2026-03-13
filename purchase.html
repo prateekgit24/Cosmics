@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - COSMICS</title>
+    <title>Purchase Resources - COSMICS</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
@@ -24,7 +24,7 @@
             --border: rgba(255, 255, 255, 0.08);
             --text: #e4e8f0;
             --muted: #6b7590;
-            --accent: #4f8ef7;
+            --accent: #f5a623;
         }
 
         body {
@@ -63,85 +63,136 @@
         }
 
         .logo-name span {
-            color: var(--accent);
+            color: #4f8ef7;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 64px 24px;
+            text-align: center;
         }
 
         h1 {
             font-family: 'Syne', sans-serif;
             font-size: 36px;
             margin-bottom: 16px;
-            text-align: center;
         }
 
         p.subtitle {
             color: var(--muted);
             margin-bottom: 48px;
             font-size: 18px;
-            text-align: center;
             line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .contact-cards {
+        .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .contact-card {
-            background: var(--surface2);
+        .pricing-card {
+            background: var(--surface);
             border: 1px solid var(--border);
-            padding: 40px 32px;
             border-radius: 16px;
+            padding: 40px 30px;
             text-align: center;
-            transition: transform 0.22s ease, border-color 0.22s ease;
+            position: relative;
+            transition: transform 0.22s ease;
         }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(79, 142, 247, 0.4);
+        .pricing-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(245, 166, 35, 0.1);
+            transform: scale(1.02);
         }
 
-        .contact-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #110f0a;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .contact-title {
+        .p-title {
             font-family: 'Syne', sans-serif;
             font-size: 22px;
-            margin-bottom: 12px;
-            color: var(--text);
+            margin-bottom: 10px;
         }
 
-        .contact-detail {
-            color: var(--muted);
-            margin-bottom: 24px;
+        .p-price {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .p-price span {
             font-size: 16px;
+            color: var(--muted);
+            font-weight: 400;
+            font-family: 'Outfit', sans-serif;
         }
 
-        .contact-action {
-            display: inline-block;
-            background: rgba(79, 142, 247, 0.1);
+        .p-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .p-features li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .p-features li::before {
+            content: "✓";
             color: var(--accent);
-            padding: 14px 32px;
-            border-radius: 100px;
+            font-weight: bold;
+        }
+
+        .p-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 14px 24px;
+            width: 100%;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            letter-spacing: 0.5px;
             transition: all 0.2s;
         }
 
-        .contact-action:hover {
+        .p-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-card.popular .p-btn {
             background: var(--accent);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(79, 142, 247, 0.25);
+            color: #110f0a;
+            border: none;
+        }
+
+        .pricing-card.popular .p-btn:hover {
+            background: #df9114;
         }
     </style>
 </head>
@@ -161,6 +212,8 @@
 
         <nav
             style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+            <a href="index.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Home</a>
             <a href="about-us.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
                 onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">About Us</a>
             <a href="purchase.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
@@ -176,30 +229,46 @@
     </header>
 
     <div class="container">
-        <h1>Let's Connect</h1>
-        <p class="subtitle">I'm always open to discussing new projects, creative ideas, or opportunities to be part of
-            your visions.</p>
+        <h1>Software Resources & Tools</h1>
+        <p class="subtitle">Purchase high-quality UI kits, full-stack boilerplate code, and premium tools directly from
+            Cosmics.</p>
 
-        <div class="contact-cards">
-            <div class="contact-card">
-                <div class="contact-icon">📧</div>
-                <div class="contact-title">Email</div>
-                <div class="contact-detail">Drop me an email for direct inquiries and support.</div>
-                <a href="mailto:help@cosmics.software" class="contact-action">help@cosmics.software</a>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="p-title">Basic Bundle</div>
+                <div class="p-price">$29</div>
+                <ul class="p-features">
+                    <li>3 Premium UI Kits</li>
+                    <li>Basic Landing Templates</li>
+                    <li>Lifetime Updates for Basic</li>
+                    <li>Community Support</li>
+                </ul>
+                <a href="#" class="p-btn" onclick="alert('Checkout integration coming soon!')">Purchase Basic</a>
             </div>
 
-            <div class="contact-card">
-                <div class="contact-icon">💬</div>
-                <div class="contact-title">Discord</div>
-                <div class="contact-detail">Join our community server to chat and get real-time help.</div>
-                <a href="https://discord.com" target="_blank" rel="noopener" class="contact-action">Join Discord</a>
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="p-title">Pro Developer</div>
+                <div class="p-price">$79</div>
+                <ul class="p-features">
+                    <li>All UI Kits + Figma Files</li>
+                    <li>Full-Stack Code Boilerplates</li>
+                    <li>Auth & API Templates</li>
+                    <li>Priority Email Support</li>
+                </ul>
+                <a href="#" class="p-btn" onclick="alert('Checkout integration coming soon!')">Purchase Pro</a>
             </div>
 
-            <div class="contact-card">
-                <div class="contact-icon">🐙</div>
-                <div class="contact-title">GitHub</div>
-                <div class="contact-detail">Check out my open-source projects and contributions.</div>
-                <a href="https://github.com" target="_blank" rel="noopener" class="contact-action">View GitHub</a>
+            <div class="pricing-card">
+                <div class="p-title">Enterprise</div>
+                <div class="p-price">$199</div>
+                <ul class="p-features">
+                    <li>Everything in Pro Bundle</li>
+                    <li>SaaS Architecture Codebase</li>
+                    <li>Custom Components Requests</li>
+                    <li>1-on-1 Onboarding Session</li>
+                </ul>
+                <a href="#" class="p-btn" onclick="alert('Checkout integration coming soon!')">Purchase Enterprise</a>
             </div>
         </div>
     </div>

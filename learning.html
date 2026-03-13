@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terms & Conditions - COSMICS</title>
+    <title>Learning Center - COSMICS</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
@@ -67,29 +67,88 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 48px 24px;
-            line-height: 1.6;
+            padding: 64px 24px;
         }
 
         h1 {
             font-family: 'Syne', sans-serif;
-            font-size: 32px;
-            margin-bottom: 24px;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-top: 32px;
+            font-size: 36px;
             margin-bottom: 16px;
-            color: var(--accent);
+            text-align: center;
         }
 
-        p {
+        p.subtitle {
             color: var(--muted);
-            margin-bottom: 16px;
-            font-size: 16px;
+            margin-bottom: 48px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.22s ease, border-color 0.22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 142, 247, 0.4);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 160px;
+            background: var(--surface2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .card-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .card-desc {
+            color: var(--muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .card-btn {
+            display: inline-block;
+            background: rgba(79, 142, 247, 0.1);
+            color: var(--accent);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .card-btn:hover {
+            background: var(--accent);
+            color: #fff;
         }
     </style>
 </head>
@@ -122,28 +181,41 @@
                 onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Resources</a>
         </nav>
     </header>
+
     <div class="container">
-        <h1>Terms & Conditions</h1>
-        <p>Last updated: March 2026</p>
+        <h1>Learning Center</h1>
+        <p class="subtitle">Master modern technologies with our curated guides, tutorials, and development resources.
+        </p>
 
-        <h2>Agreement to Terms</h2>
-        <p>By accessing or using our websites and services, you agree to be bound by these Terms and Conditions. If you
-            disagree with any part of the terms, then you may not access our services.</p>
-
-        <h2>Intellectual Property</h2>
-        <p>The service and its original content, features, and functionality are and will remain the exclusive property
-            of Cosmics and its licensors. Our services are protected by copyright, trademark, and other laws of both the
-            United States and foreign countries.</p>
-
-        <h2>Disclaimer</h2>
-        <p>Your use of the service is at your sole risk. The service is provided on an "AS IS" and "AS AVAILABLE" basis.
-            The service is provided without warranties of any kind, whether express or implied, including, but not
-            limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or
-            course of performance.</p>
-
-        <h2>Changes</h2>
-        <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. What constitutes
-            a material change will be determined at our sole discretion.</p>
+        <div class="grid">
+            <div class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #1e2333, #0f1117);">⚛️</div>
+                <div class="card-body">
+                    <div class="card-title">Frontend Mastery</div>
+                    <div class="card-desc">Learn React, Vue, and modern CSS techniques to build beautiful interfaces.
+                    </div>
+                    <a href="#" class="card-btn">Start Learning</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #1e2333, #0f1117);">⚙️</div>
+                <div class="card-body">
+                    <div class="card-title">Backend Fundamentals</div>
+                    <div class="card-desc">Master Node.js, databases, and API development with our structured path.
+                    </div>
+                    <a href="#" class="card-btn">Start Learning</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #1e2333, #0f1117);">🚀</div>
+                <div class="card-body">
+                    <div class="card-title">Startup Engineering</div>
+                    <div class="card-desc">Learn how to build, deploy, and scale applications efficiently as a solo
+                        developer.</div>
+                    <a href="#" class="card-btn">Start Learning</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer
