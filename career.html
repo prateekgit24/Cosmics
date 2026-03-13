@@ -5,6 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Careers - COSMICS</title>
+    <meta name="description" content="Join the Cosmics team. Apply for our software engineering and design internships to help build premium developer tools." />
+    <meta name="keywords" content="Cosmics careers, software engineering internships, developer jobs, UI UX design internships" />
+    <meta name="author" content="Cosmics" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Careers - COSMICS" />
+    <meta property="og:description" content="Join the Cosmics team. Apply for our software engineering and design internships." />
+    <meta property="og:image" content="https://cosmics.software/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705659414000670"
+        crossorigin="anonymous"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
@@ -165,6 +176,8 @@
 
         <nav
             style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+            <a href="index.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Home</a>
             <a href="about-us.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
                 onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">About Us</a>
             <a href="purchase.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
@@ -186,18 +199,26 @@
 
         <div class="form-container">
             <h2 style="margin-bottom: 20px; font-family: 'Syne', sans-serif;">Internship Application</h2>
-            <form onsubmit="event.preventDefault(); alert('Application submitted successfully!'); this.reset();">
+            <!-- <form onsubmit="event.preventDefault(); alert('Application submitted successfully!'); this.reset();"></form> -->
+            <form id="applyForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="70eff180-88be-4214-8fb6-de2e109e6af6">
+                <!-- Makes the email you receive look nicely formatted with a table -->
+                <input type="hidden" name="from_name" value="Cosmics Internships">
+                <input type="hidden" name="subject" value="New Internship Application">
+
+                <!-- Automatically sets the 'reply-to' to the applicant's email address -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" required placeholder="John Doe" />
+                    <input type="text" id="name" name="name" required placeholder="John Doe" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com" />
+                    <input type="email" id="email" name="email" required placeholder="you@example.com" />
                 </div>
                 <div class="form-group">
                     <label for="role">Role of Interest</label>
-                    <select id="role" required>
+                    <select id="role" name="role" required>
                         <option value="">Select a role...</option>
                         <option value="frontend">Frontend Developer Intern</option>
                         <option value="backend">Backend Developer Intern</option>
@@ -207,17 +228,85 @@
                 </div>
                 <div class="form-group">
                     <label for="portfolio">Portfolio / GitHub URL</label>
-                    <input type="url" id="portfolio" placeholder="https://github.com/yourusername" />
+                    <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/yourusername" />
                 </div>
                 <div class="form-group">
                     <label for="message">Why Cosmics?</label>
-                    <textarea id="message" rows="4" required
+                    <textarea id="message" name="message" rows="4" required
                         placeholder="Tell us why you want to intern at our startup..."></textarea>
                 </div>
-                <button type="submit">Submit Application</button>
+                <button type="submit" id="submitBtn">Submit Application</button>
+                <div id="resultMsg"
+                    style="margin-top: 16px; font-size: 15px; font-weight: 500; display: none; text-align: center; border-radius: 8px; padding: 12px; background: rgba(255,255,255,0.05);">
+                </div>
             </form>
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById('applyForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const resultMsg = document.getElementById('resultMsg');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.style.opacity = '0.7';
+            submitBtn.style.cursor = 'not-allowed';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            resultMsg.style.display = 'block';
+            resultMsg.style.color = 'var(--text)';
+            resultMsg.innerHTML = "Please wait...";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        resultMsg.innerHTML = "🎉 Application submitted successfully! We'll be in touch soon.";
+                        resultMsg.style.color = "#4cd97b";
+                        resultMsg.style.background = "rgba(76, 217, 123, 0.1)";
+                        resultMsg.style.border = "1px solid rgba(76, 217, 123, 0.3)";
+                        form.reset();
+                    } else {
+                        console.log(response);
+                        resultMsg.innerHTML = "❌ " + json.message;
+                        resultMsg.style.color = "#f97060";
+                        resultMsg.style.background = "rgba(249, 112, 96, 0.1)";
+                        resultMsg.style.border = "1px solid rgba(249, 112, 96, 0.3)";
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    resultMsg.innerHTML = "❌ Something went wrong! Please try again later.";
+                    resultMsg.style.color = "#f97060";
+                    resultMsg.style.background = "rgba(249, 112, 96, 0.1)";
+                    resultMsg.style.border = "1px solid rgba(249, 112, 96, 0.3)";
+                })
+                .then(function () {
+                    submitBtn.textContent = 'Submit Application';
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    submitBtn.disabled = false;
+
+                    setTimeout(() => {
+                        resultMsg.style.display = "none";
+                    }, 8000);
+                });
+        });
+    </script>
 
     <footer
         style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); font-size: 14px;">

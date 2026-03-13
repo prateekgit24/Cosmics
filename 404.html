@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy Policy - COSMICS</title>
-    <meta name="description" content="Read the Cosmics Privacy Policy. Understand how we handle your data, our cookie usage, and your personal privacy rights." />
-    <meta name="keywords" content="Cosmics privacy policy, data security, cookie policy, user privacy" />
+    <title>404 Not Found - COSMICS</title>
+    <meta name="description" content="The page you are looking for does not exist." />
     <meta name="author" content="Cosmics" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <meta property="og:title" content="Privacy Policy - COSMICS" />
-    <meta property="og:description" content="Read the Cosmics Privacy Policy to understand how we handle your data." />
+
+    <meta property="og:title" content="404 Not Found - COSMICS" />
+    <meta property="og:description" content="The page you are looking for does not exist." />
     <meta property="og:image" content="https://cosmics.software/og-image.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
+
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
@@ -41,6 +42,8 @@
             font-family: 'Outfit', sans-serif;
             font-weight: 400;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -76,35 +79,49 @@
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: auto;
             padding: 48px 24px;
-            line-height: 1.6;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h1 {
             font-family: 'Syne', sans-serif;
-            font-size: 32px;
-            margin-bottom: 24px;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-top: 32px;
+            font-size: 100px;
+            line-height: 1;
             margin-bottom: 16px;
-            color: var(--accent);
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         p {
             color: var(--muted);
-            margin-bottom: 16px;
-            font-size: 16px;
+            margin-bottom: 32px;
+            font-size: 18px;
         }
-
-        ul {
-            color: var(--muted);
-            margin-left: 24px;
-            margin-bottom: 16px;
+        
+        .btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
             font-size: 16px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -121,7 +138,6 @@
                 <span class="logo-name">COS<span>MICS</span></span>
             </a>
         </div>
-
         <nav
             style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
             <a href="index.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
@@ -139,49 +155,16 @@
                 onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Resources</a>
         </nav>
     </header>
+
     <div class="container">
-        <h1>Privacy Policy</h1>
-        <p>Last updated: March 2026</p>
-
-        <h2>Cookie Usage</h2>
-        <p>We use cookies and similar tracking technologies to track the activity on our application and store certain
-            information. Tracking technologies used are beacons, tags, and scripts to collect and track information and
-            to improve and analyze our service.</p>
-        <ul>
-            <li><strong>Essential Cookies:</strong> Used for authenticating users and preventing fraudulent use of user
-                accounts.</li>
-            <li><strong>Analytics Cookies:</strong> We use these to understand how you use our website, so we can make
-                our systems better.</li>
-        </ul>
-
-        <h2>How Data is Handled</h2>
-        <p>Your data is processed and stored securely. We only collect the minimal required information necessary to
-            provide our services.</p>
-        <ul>
-            <li>We do not sell your personal data to third parties.</li>
-            <li>We may use third-party Service Providers to monitor and analyze the use of our Service.</li>
-            <li>Your data is encrypted both in transit and at rest.</li>
-        </ul>
-
-        <h2>Your Rights</h2>
-        <p>You have the right to request access, correction, or deletion of your personal data at any time. Simply
-            contact us to initiate any of these requests.</p>
+        <h1>404</h1>
+        <p>Oops! We couldn't find the page you were looking for.</p>
+        <a href="index.html" class="btn">Return to Home</a>
     </div>
 
     <footer
-        style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); font-size: 14px;">
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-            <a href="privacy-policy.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Privacy
-                Policy</a>
-            <a href="contact-us.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Contact Us</a>
-            <a href="terms-conditions.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Terms &
-                Conditions</a>
-        </div>
+        style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: auto; color: var(--muted); font-size: 14px;">
         <p>&copy; 2026 Cosmics. All rights reserved.</p>
     </footer>
 </body>
-
 </html>
