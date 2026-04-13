@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /my-account.html
+Disallow: /old/
 
 Sitemap: https://cosmics.software/sitemap.xml

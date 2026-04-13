@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon - COSMICS</title>
+    <meta name="description" content="This COSMICS product is currently in development. Stay tuned for launch updates." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Coming Soon - COSMICS" />
+    <meta property="og:description" content="This product is currently in development. Stay tuned for launch updates." />
+    <meta property="og:image" content="https://cosmics.software/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://cosmics.software/coming-soon.html" />
+    <meta name="robots" content="noindex, follow" />
+    <meta property="og:url" content="https://cosmics.software/coming-soon.html" />
+    <meta property="og:type" content="website" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg: #08110b;
+            --surface: #101d14;
+            --surface-2: #15281c;
+            --border: rgba(164, 238, 189, 0.18);
+            --text: #e7f5ec;
+            --muted: #98b6a2;
+            --accent: #4cd97b;
+            --accent-2: #2f9b56;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 15% 15%, rgba(76, 217, 123, 0.2), transparent 35%),
+                radial-gradient(circle at 85% 80%, rgba(76, 217, 123, 0.14), transparent 30%),
+                linear-gradient(180deg, #070d09 0%, #0a1410 100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            background: rgba(7, 13, 9, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .header-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-name span {
+            color: var(--accent);
+        }
+
+        .header-links {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .header-links a:hover {
+            color: var(--text);
+        }
+
+        main {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            padding: 40px 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 760px;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(16, 29, 20, 0.95), rgba(13, 24, 17, 0.95));
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(76, 217, 123, 0.08);
+            overflow: hidden;
+            animation: cardIn 0.7s ease both;
+        }
+
+        .card-top {
+            padding: 28px 28px 20px;
+            border-bottom: 1px solid rgba(164, 238, 189, 0.1);
+            background: linear-gradient(90deg, rgba(76, 217, 123, 0.12), rgba(76, 217, 123, 0.02));
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(76, 217, 123, 0.45);
+            border-radius: 100px;
+            color: #d7fbe3;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+            animation: pulse 1.8s infinite;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(28px, 5vw, 44px);
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            color: var(--accent);
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.65;
+            max-width: 62ch;
+        }
+
+        .card-body {
+            padding: 24px 28px 30px;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .step {
+            border: 1px solid rgba(164, 238, 189, 0.14);
+            border-radius: 12px;
+            padding: 12px;
+            background: rgba(21, 40, 28, 0.65);
+        }
+
+        .step strong {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #c5e7d1;
+            margin-bottom: 5px;
+        }
+
+        .step span {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #06220f;
+        }
+
+        .btn-primary:hover {
+            background: #5be689;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: rgba(21, 40, 28, 0.5);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(164, 238, 189, 0.4);
+            background: rgba(21, 40, 28, 0.8);
+        }
+
+        footer {
+            border-top: 1px solid rgba(164, 238, 189, 0.12);
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+            padding: 16px;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 217, 123, 0.45); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 217, 123, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 217, 123, 0); }
+        }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(14px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @media (max-width: 760px) {
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .card-top,
+            .card-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-wrap">
+            <a class="logo" href="/">
+                <svg viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(76,217,123,0.65)" stroke-width="1.3" />
+                    <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4cd97b" />
+                    <path d="M11 18L14 21L17 18H11Z" fill="rgba(76,217,123,0.5)" />
+                </svg>
+                <span class="logo-name">COS<span>MICS</span></span>
+            </a>
+            <div class="header-links">
+                <a href="tools.html">Tools</a>
+                <a href="/">Home</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="card">
+            <div class="card-top">
+                <span class="pill"><span class="dot"></span> Product In Development</span>
+                <h1><span id="productName" class="product-name">This Product</span> is Coming Soon</h1>
+                <p class="sub">We are actively designing and building this project. The roadmap, interfaces, and core systems are being prepared for launch.</p>
+            </div>
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="step">
+                        <strong>Phase 1</strong>
+                        <span>Planning and system architecture</span>
+                    </div>
+                    <div class="step">
+                        <strong>Phase 2</strong>
+                        <span>Design and core feature implementation</span>
+                    </div>
+                    <div class="step">
+                        <strong>Phase 3</strong>
+                        <span>Testing, polish, and public release</span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-primary" href="tools.html">Back To Tools</a>
+                    <a class="btn btn-secondary" href="/">Go To Home</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Cosmics. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const product = params.get('product');
+        if (product) {
+            document.getElementById('productName').textContent = product;
+            document.title = product + ' - Coming Soon | COSMICS';
+        }
+    </script>
+</body>
+</html>

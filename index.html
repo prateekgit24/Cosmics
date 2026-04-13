@@ -1,60 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COSMICS</title>
-    <meta name="description"
-        content="Cosmics provides high-quality software resources, premium UI kits, and full-stack boilerplates for modern developers." />
+    <title>COSMICS - The Developer Universe</title>
+    <meta name="description" content="Cosmics provides high-quality software resources, premium UI kits, and full-stack boilerplates for modern developers." />
     <meta name="keywords" content="Cosmics, software resources, UI kits, developer tools, full-stack boilerplates" />
     <meta name="author" content="Cosmics" />
+    <meta name="google-site-verification" content="REPLACE_WITH_YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta property="og:title" content="COSMICS - Premium Developer Tools" />
-    <meta property="og:description"
-        content="High-quality software resources, premium UI kits, and full-stack boilerplates for modern developers." />
+    <meta property="og:description" content="High-quality software resources, premium UI kits, and full-stack boilerplates for modern developers." />
     <meta property="og:image" content="https://cosmics.software/og-image.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="google-adsense-account" content="ca-pub-5705659414000670">
+    <link rel="canonical" href="https://cosmics.software/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta property="og:url" content="https://cosmics.software/" />
+    <meta property="og:type" content="website" />
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705659414000670"
-        crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705659414000670" crossorigin="anonymous"></script>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         :root {
-            --bg: #0f1117;
-            --surface: #181c26;
-            --surface2: #1e2333;
+            --bg: #03050a; /* Deepest space black */
+            --surface: rgba(18, 22, 33, 0.4);
+            --surface2: rgba(30, 35, 51, 0.6);
             --border: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(79, 142, 247, 0.3);
             --text: #e4e8f0;
-            --muted: #6b7590;
+            --muted: #8b95a5;
             --accent: #4f8ef7;
-            --accent-soft: rgba(79, 142, 247, 0.12);
+            --accent-glow: rgba(79, 142, 247, 0.6);
+            --success: #4cd97b;
+            --purple: #c084fc;
         }
 
-        html {
-            scroll-behavior: smooth;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Outfit', sans-serif; 
+            min-height: 100vh; 
+            overflow-x: hidden; 
+            line-height: 1.6;
+            position: relative;
         }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Outfit', sans-serif;
-            font-weight: 400;
-            min-height: 100vh;
+        /* ----- COSMIC BACKGROUND (STARS & PARALLAX) ----- */
+        #starfield {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+            background: radial-gradient(circle at bottom, #091221 0%, #03050a 100%);
         }
 
-        /* HEADER */
+        .star-layer {
+            position: absolute;
+            top: -100px; left: -100px; right: -100px; bottom: -200vh; /* Taller for parallax */
+            background-repeat: repeat;
+        }
+
+        .stars-small { background-size: 200px 200px; animation: twinkle 8s infinite alternate;}
+        .stars-medium { background-size: 300px 300px; animation: twinkle 12s infinite alternate-reverse;}
+        .stars-large { background-size: 400px 400px; animation: twinkle 15s infinite alternate;}
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+
+        /* Glowing interactive nebulas */
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+            transition: transform 1.5s cubic-bezier(0.1, 0.8, 0.2, 1); /* Smooth trailing */
+            mix-blend-mode: screen;
+        }
+        
+        #nebula-1 { width: 45vw; height: 45vw; background: rgba(79, 142, 247, 0.4); top: -10vw; left: -10vw; }
+        #nebula-2 { width: 55vw; height: 55vw; background: rgba(192, 132, 252, 0.3); bottom: -15vw; right: -15vw; }
+        #nebula-cursor { width: 30vw; height: 30vw; background: rgba(76, 217, 123, 0.2); top:0; left:0; transform: translate(-50%, -50%); opacity: 0;} /* Appears on mouse movement */
+
+        /* ----- UNIFIED HEADER ----- */
         header {
             padding: 24px 48px;
             display: flex;
@@ -63,1122 +102,585 @@
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            background: rgba(15, 17, 23, 0.92);
+            background: rgba(3, 5, 10, 0.85); /* Dark space match */
             backdrop-filter: blur(16px);
-            z-index: 50;
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 100;
             gap: 16px;
             flex-wrap: wrap;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .logo svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .logo-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 21px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: var(--text);
-        }
-
-        .logo-name span {
-            color: var(--accent);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .pill {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            padding: 6px 15px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-family: 'Outfit', sans-serif;
-            cursor: pointer;
-            transition: all 0.18s;
-        }
-
-        .pill:hover {
-            color: var(--text);
-            border-color: rgba(255, 255, 255, 0.18);
-        }
-
-        .pill.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-        }
-
-        /* PAGE HEADER */
-        .page-header {
-            padding: 48px 48px 28px;
-        }
-
-        .page-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 30px;
-            font-weight: 800;
-        }
-
-        .page-sub {
-            font-size: 14px;
-            color: var(--muted);
-            margin-top: 5px;
-        }
-
-        /* GRID */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 18px;
-            padding: 4px 48px 80px;
-        }
-
-        /* CARD */
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px) scale(1.015);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(79, 142, 247, 0.22);
-            border-color: rgba(79, 142, 247, 0.22);
-        }
-
-        /* SLIDESHOW */
-        .slideshow {
-            width: 100%;
-            height: 180px;
-            position: relative;
-            overflow: hidden;
-            background: var(--surface2);
-        }
-
-        .slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 0.55s ease;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .slide-ph {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            background: linear-gradient(135deg, var(--surface2), #12151f);
-        }
-
-        .slide-dots {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 4px;
-            z-index: 2;
-        }
-
-        .dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.28);
-            transition: background 0.3s;
-        }
-
-        .dot.active {
-            background: rgba(255, 255, 255, 0.85);
-        }
-
-        /* CARD BODY */
-        .card-body {
-            padding: 18px 18px 16px;
-        }
-
-        .card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .card-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
-        }
-
-        .badge {
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
-            padding: 3px 9px;
-            border-radius: 100px;
-            border: 1px solid;
-        }
-
-        .bweb {
-            color: #4f8ef7;
-            border-color: rgba(79, 142, 247, .35);
-            background: rgba(79, 142, 247, .08);
-        }
-
-        .bgame {
-            color: #f97060;
-            border-color: rgba(249, 112, 96, .35);
-            background: rgba(249, 112, 96, .08);
-        }
-
-        .bext {
-            color: #f5a623;
-            border-color: rgba(245, 166, 35, .35);
-            background: rgba(245, 166, 35, .08);
-        }
-
-        .bos {
-            color: #4cd97b;
-            border-color: rgba(76, 217, 123, .35);
-            background: rgba(76, 217, 123, .08);
-        }
-
-        .bapp {
-            color: #c084fc;
-            border-color: rgba(192, 132, 252, .35);
-            background: rgba(192, 132, 252, .08);
-        }
-
-        .card-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .card-desc {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.55;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-        }
-
-        .card-status {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            color: var(--muted);
-        }
-
-        .sdot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-        }
-
-        .slive {
-            background: #4cd97b;
-            box-shadow: 0 0 5px rgba(76, 217, 123, .5);
-        }
-
-        .sbeta {
-            background: #f5a623;
-            box-shadow: 0 0 5px rgba(245, 166, 35, .4);
-        }
-
-        .ssoon {
-            background: var(--muted);
-        }
-
-        .card-arrow {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            transition: all 0.18s;
-        }
-
-        .card:hover .card-arrow {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-
-        /* OVERLAY */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(5, 7, 12, 0.86);
-            backdrop-filter: blur(14px);
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.22s ease;
-        }
-
-        .overlay.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        /* MODAL */
-        .modal {
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            width: 100%;
-            max-width: 660px;
-            max-height: 88vh;
-            overflow-y: auto;
-            transform: scale(0.95) translateY(14px);
-            transition: transform 0.22s ease;
-            position: relative;
-        }
-
-        .overlay.open .modal {
-            transform: scale(1) translateY(0);
-        }
-
-        .modal::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        .modal::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            color: var(--muted);
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.18s;
-            z-index: 10;
-        }
-
-        .modal-close:hover {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* MODAL GALLERY */
-        .mgallery {
-            width: 100%;
-            height: 260px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 18px 18px 0 0;
-            background: var(--surface2);
-        }
-
-        .mslide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 0.45s ease;
-        }
-
-        .mslide.active {
-            opacity: 1;
-        }
-
-        .mslide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .mslide-ph {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 72px;
-            background: linear-gradient(135deg, var(--surface2), #12151f);
-        }
-
-        .mgallery-nav {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 14px;
-            pointer-events: none;
-        }
-
-        .gbtn {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: rgba(10, 12, 20, 0.68);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--text);
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            pointer-events: all;
-            transition: background 0.2s;
-        }
-
-        .gbtn:hover {
-            background: rgba(79, 142, 247, 0.4);
-        }
-
-        .mgallery-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-        }
-
-        .mdot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.28);
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .mdot.active {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        /* MODAL CONTENT */
-        .mcontent {
-            padding: 24px 28px 32px;
-        }
-
-        .mheader {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 18px;
-        }
-
-        .micon {
-            width: 52px;
-            height: 52px;
-            border-radius: 13px;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            flex-shrink: 0;
-        }
-
-        .mmeta {
-            flex: 1;
-        }
-
-        .mname {
-            font-family: 'Syne', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .mtagline {
-            font-size: 13px;
-            color: var(--muted);
-            margin-top: 3px;
-        }
-
-        .mbadges {
-            display: flex;
-            gap: 7px;
-            margin-top: 8px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .mstatus-badge {
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo svg { width: 28px; height: 28px; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .logo:hover svg { transform: rotate(180deg) scale(1.1); } /* Fun cosmic spin */
+        .logo-name { font-family: 'Syne', sans-serif; font-size: 21px; font-weight: 800; letter-spacing: 0.5px; color: var(--text); }
+        .logo-name span { color: var(--accent); }
+
+        nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500; }
+        nav a { color: var(--text); text-decoration: none; transition: color 0.2s, text-shadow 0.2s; }
+        nav a:hover { color: var(--accent); text-shadow: 0 0 10px rgba(79, 142, 247, 0.5); }
+        nav a.active { color: var(--accent); }
+
+        /* ----- HERO SECTION ----- */
+        .hero { 
+            position: relative; 
+            min-height: calc(100vh - 80px); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 100px 20px 40px; 
+            z-index: 1;
+        }
+
+        .badge-pill {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
-            padding: 3px 9px;
-            border-radius: 100px;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            background: transparent;
-        }
-
-        .mdesc {
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.72;
-            margin-bottom: 22px;
-        }
-
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .spec {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            padding: 11px 14px;
-        }
-
-        .spec-label {
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 3px;
-        }
-
-        .spec-val {
-            font-size: 13px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 14px;
             font-weight: 500;
-        }
-
-        .tech-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-            margin-bottom: 24px;
-        }
-
-        .ttag {
-            font-size: 12px;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            color: var(--muted);
-            padding: 3px 11px;
-            border-radius: 6px;
-        }
-
-        .open-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            background: var(--accent);
             color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 13px 28px;
-            width: 100%;
-            font-family: 'Outfit', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.18s;
+            margin-bottom: 30px;
+            animation: slideDown 0.8s ease-out;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.05);
+        }
+        .badge-pulse {
+            width: 8px; height: 8px; background: var(--success); border-radius: 50%;
+            box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(76, 217, 123, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(76, 217, 123, 0); } 100% { box-shadow: 0 0 0 0 rgba(76, 217, 123, 0); } }
+
+        .title { 
+            font-family: 'Syne', sans-serif; 
+            font-size: clamp(36px, 6vw, 76px); 
+            font-weight: 800; 
+            line-height: 1.1; 
+            margin-bottom: 20px; 
+            animation: slideUp 1s ease-out 0.2s backwards; 
+            letter-spacing: -1px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .title-highlight { 
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            display: inline-block;
+            filter: drop-shadow(0 0 20px rgba(79, 142, 247, 0.4));
         }
 
-        .open-btn:hover {
-            background: #3b7ee0;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 22px rgba(79, 142, 247, 0.35);
+        .subtitle { 
+            font-size: clamp(16px, 1.8vw, 19px); 
+            color: var(--muted); 
+            max-width: 650px; 
+            margin: 0 auto 36px; 
+            animation: slideUp 1s ease-out 0.4s backwards; 
         }
 
-        .empty {
-            text-align: center;
-            padding: 70px 20px;
-            color: var(--muted);
-            grid-column: 1/-1;
+        .cta-group { 
+            display: flex; gap: 20px; justify-content: center; 
+            animation: slideUp 1s ease-out 0.6s backwards; flex-wrap: wrap;
         }
 
-        @media(max-width:680px) {
-            header {
-                padding: 18px 20px;
-            }
+        .btn { 
+            padding: 18px 40px; border-radius: 100px; font-weight: 600; font-size: 17px; 
+            text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-primary { 
+            background: rgba(79, 142, 247, 0.9); color: #fff; 
+            box-shadow: 0 0 30px rgba(79, 142, 247, 0.4), inset 0 1px 0 rgba(255,255,255,0.2); 
+            border: 1px solid transparent;
+        }
+        .btn-primary:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 0 50px rgba(79, 142, 247, 0.6), inset 0 1px 0 rgba(255,255,255,0.4); 
+            background: #4f8ef7;
+        }
+        
+        .btn-secondary { 
+            background: rgba(255,255,255,0.02); color: var(--text); 
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .btn-secondary:hover { 
+            background: rgba(255,255,255,0.06); transform: translateY(-3px); 
+            border-color: rgba(255,255,255,0.3); box-shadow: 0 0 20px rgba(255,255,255,0.05);
+        }
 
-            .page-header,
-            .grid {
-                padding-left: 18px;
-                padding-right: 18px;
-            }
+        /* Abstract UI Mockup below hero */
+        .hero-visual {
+            margin-top: 80px; width: 100%; max-width: 1000px; height: 350px;
+            background: linear-gradient(180deg, rgba(21, 24, 34, 0.6) 0%, transparent 100%);
+            border: 1px solid rgba(255,255,255,0.1); border-bottom: none; border-radius: 24px 24px 0 0;
+            position: relative; animation: slideUpFade 1.5s ease-out 0.8s backwards;
+            overflow: hidden; box-shadow: 0 -20px 80px rgba(79, 142, 247, 0.1);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        }
+        .hero-visual::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.8;
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        /* Floating Elements */
+        .float-obj { position: absolute; pointer-events: none; opacity: 0.6; }
+        .obj-1 { top: 20%; left: 10%; animation: floatObj 12s infinite alternate linear; }
+        .obj-2 { top: 15%; right: 15%; animation: floatObj 15s infinite alternate-reverse linear; }
+        .obj-3 { bottom: 30%; left: 15%; animation: floatObj 20s infinite alternate ease-in-out; }
 
-            .specs-grid {
-                grid-template-columns: 1fr;
-            }
+        @keyframes floatObj { 
+            0% { transform: translateY(0) rotate(0deg); } 
+            100% { transform: translateY(-40px) rotate(20deg); } 
+        }
+        @keyframes slideUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(100px); } 100% { opacity: 1; transform: translateY(0); } }
 
-            .mcontent {
-                padding: 18px 18px 26px;
-            }
+        /* ----- TRUSTED LOGOS MARQUEE ----- */
+        .marquee-container {
+            width: 100%; overflow: hidden; background: rgba(0,0,0,0.4);
+            border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 40px 0; position: relative; z-index: 2; backdrop-filter: blur(5px);
+        }
+        .marquee-container::before, .marquee-container::after { content: ''; position: absolute; top: 0; bottom: 0; width: 150px; z-index: 2; }
+        .marquee-container::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+        .marquee-container::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
 
-            .mgallery {
-                height: 190px;
-            }
+        .marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        .marquee:hover { animation-play-state: paused; }
+        .marquee-item {
+            font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800;
+            color: rgba(255,255,255,0.3); margin: 0 40px; display: flex; align-items: center; gap: 12px; transition: color 0.3s;
+        }
+        .marquee-item:hover { color: rgba(255,255,255,0.8); text-shadow: 0 0 15px rgba(255,255,255,0.2); }
+
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ----- SECTION TITLES ----- */
+        .section-header { text-align: center; margin-bottom: 80px; opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .section-header.visible { opacity: 1; transform: translateY(0); }
+        
+        .section-label { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; margin-bottom: 16px; display: inline-block; text-shadow: 0 0 10px var(--accent-glow);}
+        .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.1;}
+
+        /* ----- FEATURES ----- */
+        .features-sec { padding: 120px 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index:2; }
+        
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; grid-auto-rows: minmax(300px, auto); }
+
+        .card {
+            background: rgba(15, 17, 26, 0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px;
+            position: relative; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; transform: translateY(40px);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .card.visible { opacity: 1; transform: translateY(0); }
+        
+        .card:hover { 
+            transform: translateY(-8px); border-color: rgba(79, 142, 247, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(79, 142, 247, 0.1);
+        }
+
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.05), transparent 40%);
+            z-index: 0; opacity: 0; transition: opacity 0.3s; pointer-events: none;
+        }
+        .card:hover::before { opacity: 1; }
+
+        .card-content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; }
+        
+        .c-icon {
+            width: 56px; height: 56px; border-radius: 16px;
+            background: linear-gradient(135deg, rgba(79,142,247,0.15), rgba(79,142,247,0.02));
+            border: 1px solid rgba(79,142,247,0.3); color: var(--accent);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 30px;
+            box-shadow: 0 0 15px rgba(79, 142, 247, 0.2);
+        }
+        .c-icon svg { width: 28px; height: 28px; }
+        
+        .c-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+        .c-desc { color: var(--muted); font-size: 15px; line-height: 1.6; }
+        
+        .card-large { grid-column: span 8; } .card-medium { grid-column: span 4; } .card-half { grid-column: span 6; }
+
+        .c-mockup {
+            margin-top: 30px; flex-grow: 1; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px; padding: 20px; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* ----- CODE REVEAL SECTION ----- */
+        .code-sec { padding: 120px 20px; position:relative; z-index:2;}
+        .code-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
+        .code-text { flex: 1; }
+        .code-text p { color: var(--muted); font-size: 18px; margin-bottom: 24px;}
+        
+        .editor-window {
+            flex: 1.2; background: rgba(13, 17, 23, 0.6); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 30px rgba(79,142,247,0.1);
+            opacity: 0; transform: scale(0.95); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(20px);
+        }
+        .editor-window.visible { opacity: 1; transform: scale(1); }
+        
+        .e-header { background: rgba(22, 27, 34, 0.6); padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .e-dot { width: 12px; height: 12px; border-radius: 50%; opacity:0.8;}
+        .e-red { background: #ff5f56; } .e-yel { background: #ffbd2e; } .e-grn { background: #27c93f; }
+        
+        .e-content { padding: 24px; font-family: 'Fira Code', monospace; font-size: 15px; color: #c9d1d9; overflow-x: auto; position: relative; line-height:1.5;}
+        
+        .token.keyword { color: #ff7b72; } .token.function { color: #d2a8ff; } .token.string { color: #a5d6ff; } .token.comment { color: #8b949e; font-style: italic; }
+
+        .typewriter { display: inline-block; overflow: hidden; white-space: pre; width: 0; }
+        .editor-window.visible .typewriter { animation: typing 2.5s steps(40, end) forwards; animation-delay: 0.5s; }
+        .cursor { display: inline-block; width: 8px; height: 18px; background: var(--accent); animation: blink 1s step-end infinite; vertical-align: text-bottom; opacity: 0; box-shadow: 0 0 5px var(--accent);}
+        .editor-window.visible .cursor { opacity: 1; }
+        
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes load { 0% {width: 0%;} 50% {width: 80%;} 100% {width: 100%;} }
+
+        /* ----- CTA FOOTER ----- */
+        .cta-footer { padding: 150px 20px; text-align: center; position: relative; overflow: hidden; z-index:2;}
+        .cta-glow {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80vw; height: 400px; background: linear-gradient(90deg, rgba(79,142,247,0.2), rgba(192,132,252,0.2));
+            filter: blur(100px); z-index: 0; border-radius: 50%; mix-blend-mode: screen; pointer-events: none;
+        }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-title { font-family: 'Syne', sans-serif; font-size: clamp(32px, 5vw, 52px); font-weight: 800; margin-bottom: 30px; text-shadow: 0 10px 20px rgba(0,0,0,0.5);}
+
+        /* ----- REAL FOOTER ----- */
+        footer { padding: 40px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--muted); font-size: 14px; background: rgba(3, 5, 10, 0.8); backdrop-filter: blur(10px); position:relative; z-index:2;}
+        footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; margin: 0 10px;}
+        footer a:hover { color: var(--text); }
+
+        @media(max-width: 900px) {
+            .bento-grid { display: flex; flex-direction: column; }
+            .code-container { flex-direction: column; }
+            header { padding: 15px 20px; justify-content: center; }
+            nav { justify-content: center; width: 100%;}
         }
     </style>
 </head>
-
 <body>
 
-    <header style="flex-direction: column; align-items: center; gap: 20px;">
-        <div style="display: flex; justify-content: center; width: 100%;">
-            <a class="logo" href="#">
+    <!-- CSS/JS Generated Cosmos Base -->
+    <div id="starfield">
+        <div class="star-layer stars-small" id="layer1"></div>
+        <div class="star-layer stars-medium" id="layer2"></div>
+        <div class="star-layer stars-large" id="layer3"></div>
+    </div>
+    
+    <div class="nebula" id="nebula-1"></div>
+    <div class="nebula" id="nebula-2"></div>
+    <div class="nebula" id="nebula-cursor"></div>
+
+    <!-- GLOBAL HEADER -->
+    <header>
+        <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 16px;">
+            <a class="logo" href="/">
                 <svg viewBox="0 0 28 28" fill="none">
-                    <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
+                    <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.8)" stroke-width="1.5" />
                     <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
-                    <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
+                    <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.6)" />
                 </svg>
                 <span class="logo-name">COS<span>MICS</span></span>
             </a>
         </div>
-
-        <nav
-            style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
-            <a href="index.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Home</a>
-            <a href="about-us.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">About Us</a>
-            <a href="purchase.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Purchase</a>
-            <a href="learning.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Learning
-                Center</a>
-            <a href="career.html" style="color: #4cd97b; text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='#6ee79b'" onmouseout="this.style.color='#4cd97b'">Careers</a>
-            <a href="resources.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Resources</a>
-        </nav>
-
-        <nav
-            style="display: flex; justify-content: center; width: 100%; border-top: 1px solid var(--border); padding-top: 18px;">
-            <button class="pill active" onclick="filter('all',this)">All</button>
-            <button class="pill" onclick="filter('web',this)">Web</button>
-            <button class="pill" onclick="filter('game',this)">Games</button>
-            <button class="pill" onclick="filter('ext',this)">Extensions</button>
-            <button class="pill" onclick="filter('os',this)">OS</button>
-            <button class="pill" onclick="filter('app',this)">Apps</button>
+        <nav style="display: flex; justify-content: center; width: 100%;">
+            <a href="/" class="active">Home</a>
+            <a href="tools.html">Tools</a>
+            <a href="about-us.html">About Us</a>
+            <a href="purchase.html">Purchase</a>
+            <a href="learning.html">Learning Center</a>
+            <a href="career.html">Careers</a>
+            <a href="resources.html">Resources</a>
         </nav>
     </header>
 
-    <div class="page-header">
-        <h1 class="page-title">Our Products</h1>
-        <p class="page-sub">Click any card to explore details, screenshots &amp; specs.</p>
-    </div>
-
-    <div class="grid" id="grid"></div>
-
-    <!-- MODAL -->
-    <div class="overlay" id="overlay" onclick="bgClose(event)">
-        <div class="modal" id="modal">
-            <button class="modal-close" onclick="closeModal()">&#10005;</button>
-
-            <div class="mgallery" id="mgallery">
-                <div class="mgallery-nav">
-                    <button class="gbtn" id="gprev">&#8592;</button>
-                    <button class="gbtn" id="gnext">&#8594;</button>
-                </div>
-                <div class="mgallery-dots" id="mgdots"></div>
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            
+            <div class="float-obj obj-1">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(79,142,247,0.5)" stroke-width="1.5"><polygon points="12 2 2 22 22 22"/></svg>
+            </div>
+            <div class="float-obj obj-2">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.5)" stroke-width="1"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <div class="float-obj obj-3">
+                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgba(76,217,123,0.5)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
             </div>
 
-            <div class="mcontent">
-                <div class="mheader">
-                    <div class="micon" id="micon"></div>
-                    <div class="mmeta">
-                        <div class="mname" id="mname"></div>
-                        <div class="mtagline" id="mtagline"></div>
-                        <div class="mbadges" id="mbadges"></div>
+            <div class="hero-content">
+                <div class="badge-pill">
+                    <span class="badge-pulse"></span>
+                    Entering the Cosmics Universe
+                </div>
+                
+                <h1 class="title">Tools forged for the <br><span class="title-highlight">Digital Cosmos</span></h1>
+                
+                <p class="subtitle">Navigate the vast expanse of software engineering with high-end tools, immersive UI boilerplates, and knowledge engineered for the next generation of builders.</p>
+                
+                <div class="cta-group">
+                    <a href="tools.html" class="btn btn-primary">
+                        Explore Tools 
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                    </a>
+                    <a href="resources.html" class="btn btn-secondary">
+                        View Free Resources
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div style="padding: 24px; opacity: 0.2;">
+                    <div style="height: 20px; width: 60%; background: var(--muted); border-radius: 4px; margin-bottom: 20px;"></div>
+                    <div style="display:flex; gap:20px; margin-bottom: 30px;">
+                        <div style="flex:1; height: 100px; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
+                        <div style="flex:1; height: 100px; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
+                        <div style="flex:1; height: 100px; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
                     </div>
                 </div>
-                <p class="mdesc" id="mdesc"></p>
-                <div class="specs-grid" id="mspecs"></div>
-                <div class="tech-row" id="mtech"></div>
-                <a class="open-btn" id="mbtn" href="#" target="_blank" rel="noopener noreferrer">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.3">
-                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                        <polyline points="15 3 21 3 21 9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                    Open Product
-                </a>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <div class="marquee-container">
+            <div class="marquee">
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> Modern Stack</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 2 22 22 22"/></svg> React Native</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg> Node.js Edge</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3z"/></svg> Next.js 14</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21l-9-4V7l9-4 9 4v10l-9 4z"/></svg> Python AI</div>
+                
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> Modern Stack</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 2 22 22 22"/></svg> React Native</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg> Node.js Edge</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3z"/></svg> Next.js 14</div>
+                <div class="marquee-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21l-9-4V7l9-4 9 4v10l-9 4z"/></svg> Python AI</div>
             </div>
         </div>
-    </div>
 
-    <footer
-        style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); font-size: 14px;">
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-            <a href="privacy-policy.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Privacy
-                Policy</a>
-            <a href="contact-us.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Contact Us</a>
-            <a href="terms-conditions.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
-                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Terms &
-                Conditions</a>
+        <!-- FEATURES BENTO GRID -->
+        <section class="features-sec">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Architecture</span>
+                <h2 class="section-title">Built for the Unknown</h2>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- Large Card -->
+                <div class="card card-large animate-on-scroll card-tilt">
+                    <div class="card-content">
+                        <div class="c-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        </div>
+                        <h3 class="c-title">Stellar Boilerplates</h3>
+                        <p class="c-desc">Production-ready, battle-tested modern stacks integrating robust auth, databases, payments, and sleek styling instantly. Launch your next starship in seconds.</p>
+                        
+                        <div class="c-mockup" style="flex-direction: column; align-items:flex-start;">
+                             <div style="display:flex; gap:10px; margin-bottom: 20px;">
+                                 <span style="font-family: monospace; color: var(--accent); background: rgba(79,142,247,0.1); padding: 4px 8px; border-radius:4px; box-shadow: 0 0 10px rgba(79,142,247,0.2);">npx create-cosmics-app</span>
+                             </div>
+                             <div style="width:100%; height:8px; background: rgba(255,255,255,0.05); border-radius:4px; overflow:hidden;">
+                                 <div style="width:60%; height:100%; background: var(--success); animation: load 2s infinite ease-in-out; box-shadow: 0 0 10px var(--success);"></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Card -->
+                <div class="card card-medium animate-on-scroll card-tilt" style="transition-delay: 0.1s;">
+                    <div class="card-content">
+                        <div class="c-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                        </div>
+                        <h3 class="c-title">Zero Gravity Config</h3>
+                        <p class="c-desc">Everything runs out of the box. No webpack config hell, no dependency conflicts. Just pure, frictionless coding.</p>
+                    </div>
+                </div>
+
+                <!-- Half Cards -->
+                <div class="card card-half animate-on-scroll card-tilt" style="transition-delay: 0.2s;">
+                    <div class="card-content">
+                        <div class="c-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                        </div>
+                        <h3 class="c-title">Premium Tooling</h3>
+                        <p class="c-desc">Stunning, modular UI components tailored perfectly to elevate your digital architecture into orbit.</p>
+                    </div>
+                </div>
+
+                <div class="card card-half animate-on-scroll card-tilt" style="transition-delay: 0.3s;">
+                    <div class="card-content">
+                        <div class="c-icon" style="color:var(--purple); border-color: rgba(192, 132, 252, 0.3); background: rgba(192, 132, 252, 0.1); box-shadow: 0 0 15px rgba(192, 132, 252, 0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                        </div>
+                        <h3 class="c-title">Galactic Knowledge</h3>
+                        <p class="c-desc">Curated masterclasses, guides, and raw resources to master modern development paradigms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CODE REVEAL -->
+        <section class="code-sec">
+            <div class="code-container">
+                <div class="code-text animate-on-scroll">
+                    <span class="section-label">Developer Experience</span>
+                    <h2 class="section-title" style="margin-bottom: 24px;">Write less.<br>Build more.</h2>
+                    <p>We abstract away the complex infrastructure so you can focus entirely on your logic and user experience.</p>
+                    <p>Our code is heavily typed, thoroughly commented, and architected for massive scale across the cosmos.</p>
+                </div>
+                
+                <div class="editor-window animate-on-scroll" id="editor">
+                    <div class="e-header">
+                        <div class="e-dot e-red"></div>
+                        <div class="e-dot e-yel"></div>
+                        <div class="e-dot e-grn"></div>
+                        <span style="color:#8b949e; font-size:12px; margin-left:10px; font-family:sans-serif;">starship.ts — Cosmics</span>
+                    </div>
+                    <div class="e-content">
+                        <span class="token comment">// Ignite the Cosmics engine</span><br>
+                        <span class="token keyword">import</span> { createUniverse } <span class="token keyword">from</span> <span class="token string">'@cosmics/core'</span>;<br><br>
+                        
+                        <div class="typewriter"><span class="token keyword">const</span> app = <span class="token function">createUniverse</span>({
+  auth: <span class="token string">'jwt-secure'</span>,
+  db: <span class="token string">'postgres-cluster'</span>,
+  speed: <span class="token string">'lightspeed'</span>
+});
+
+app.<span class="token function">launch</span>();</div><span class="cursor"></span>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FOOTER -->
+        <section class="cta-footer">
+            <div class="cta-glow"></div>
+            <div class="cta-content animate-on-scroll">
+                <h2 class="cta-title">Ready to build <span class="title-highlight">faster?</span></h2>
+                <a href="tools.html" class="btn btn-primary" style="padding: 24px 56px; font-size: 20px;">
+                    Explore The Universe
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div style="margin-bottom: 20px;">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="terms-conditions.html">Terms & Conditions</a>
         </div>
-        <p>&copy; 2026 Cosmics. All rights reserved.</p>
+        <p>&copy; 2026 Cosmics Universe. All rights reserved.</p>
     </footer>
 
     <script>
-        // ── PRODUCT DATA ─────────────────────────────────────────────
-        // Replace screenshots with real image URLs, and url with your real link.
-        // ─────────────────────────────────────────────────────────────
-        const PRODUCTS = [
-            {
-                id: 1, category: 'web',
-                name: 'Ecommerce Hub', icon: '🛒',
-                tagline: 'Full-stack online storefront',
-                badge: 'bweb', badgeLabel: 'Web App',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'A complete e-commerce solution featuring real-time inventory management, secure payments, and an administrative dashboard for seamless store management.',
-                specs: [
-                    { l: 'Platform', v: 'Web (Browser)' },
-                    { l: 'Category', v: 'E-Commerce' },
-                    { l: 'Status', v: 'Active' },
-                    { l: 'Type', v: 'Full-Stack' },
-                ],
-                tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-                screenshots: [
-                    'https://placehold.co/660x260/1e2333/4f8ef7?text=Storefront',
-                    'https://placehold.co/660x260/1e2333/4cd97b?text=Checkout'
-                ],
-                url: '#'
-            },
-            {
-                id: 2, category: 'web',
-                name: 'Books Portal', icon: '📚',
-                tagline: 'Digital library and bookstore',
-                badge: 'bweb', badgeLabel: 'Web App',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'A comprehensive digital library where users can browse, read, and purchase books. Includes a powerful search engine and personalized reading recommendations.',
-                specs: [
-                    { l: 'Platform', v: 'Web' },
-                    { l: 'Category', v: 'Books & Reference' },
-                    { l: 'Status', v: 'Active' },
-                    { l: 'Type', v: 'Frontend/Backend' },
-                ],
-                tech: ['Next.js', 'PostgreSQL', 'Tailwind CSS'],
-                screenshots: [
-                    'https://placehold.co/660x260/1a2040/f5a623?text=Book+Library',
-                    'https://placehold.co/660x260/1a2040/f97060?text=Reading+View'
-                ],
-                url: '#'
-            },
-            {
-                id: 3, category: 'web',
-                name: 'Chat App', icon: '💬',
-                tagline: 'Real-time messaging platform',
-                badge: 'bweb', badgeLabel: 'Web App',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'A fast, real-time communication platform supporting direct messaging, group chats, file sharing, and instant read receipts.',
-                specs: [
-                    { l: 'Platform', v: 'Web' },
-                    { l: 'Category', v: 'Communication' },
-                    { l: 'Status', v: 'Active' },
-                    { l: 'Type', v: 'Real-Time' },
-                ],
-                tech: ['React', 'Socket.io', 'Node.js', 'Express'],
-                screenshots: [
-                    'https://placehold.co/660x260/0d1020/4f8ef7?text=Chat+Interface',
-                    'https://placehold.co/660x260/0d1020/4cd97b?text=Group+Chat'
-                ],
-                url: '#'
-            },
-            {
-                id: 4, category: 'web',
-                name: 'Edu Learn', icon: '🎓',
-                tagline: 'Interactive educational platform',
-                badge: 'bweb', badgeLabel: 'Web App',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'An online educational site offering video courses, interactive quizzes, and progress tracking for students all around the globe.',
-                specs: [
-                    { l: 'Platform', v: 'Web' },
-                    { l: 'Category', v: 'Education' },
-                    { l: 'Status', v: 'Active' },
-                    { l: 'Type', v: 'E-Learning' },
-                ],
-                tech: ['Vue.js', 'Firebase', 'Express'],
-                screenshots: [
-                    'https://placehold.co/660x260/1e2033/c084fc?text=Course+Dashboard',
-                    'https://placehold.co/660x260/1e2033/f5a623?text=Video+Player'
-                ],
-                url: '#'
-            },
-            {
-                id: 5, category: 'game',
-                name: 'Ghost Killer', icon: '👻',
-                tagline: 'Fast-paced arcade shooter',
-                badge: 'bgame', badgeLabel: 'Game',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'A wildly entertaining browser-based game where players must test their reflexes by eliminating incoming ghosts using just their mouse.',
-                specs: [
-                    { l: 'Platform', v: 'Browser' },
-                    { l: 'Genre', v: 'Arcade / Action' },
-                    { l: 'Input', v: 'Mouse' },
-                    { l: 'Status', v: 'Active' },
-                ],
-                tech: ['HTML5 Canvas', 'Vanilla JS', 'CSS Animations'],
-                screenshots: [
-                    'https://placehold.co/660x260/101820/f97060?text=Menu+Screen',
-                    'https://placehold.co/660x260/101820/f5a623?text=Killing+Ghosts'
-                ],
-                url: 'https://ghost-game-g417.onrender.com/'
-            },
-            {
-                id: 6, category: 'game',
-                name: 'Minigames Hub', icon: '🎮',
-                tagline: 'Collection of browser games',
-                badge: 'bgame', badgeLabel: 'Game',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'A central hub featuring a constantly updating collection of small, highly optimized minigames playable directly in the browser with no downloads.',
-                specs: [
-                    { l: 'Platform', v: 'Browser' },
-                    { l: 'Genre', v: 'Various' },
-                    { l: 'Type', v: 'Collection' },
-                    { l: 'Status', v: 'Active' },
-                ],
-                tech: ['JavaScript', 'HTML5 WebGL', 'Howler.js'],
-                screenshots: [
-                    'https://placehold.co/660x260/0d1020/4f8ef7?text=Game+Selection',
-                    'https://placehold.co/660x260/0d1020/4cd97b?text=Gameplay'
-                ],
-                url: 'https://minigames.cosmics.software/'
-            },
-            {
-                id: 7, category: 'game',
-                name: 'Bencard', icon: '🃏',
-                tagline: 'Fun card Game',
-                badge: 'bgame', badgeLabel: 'Game',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'An intense, strategic card game where you build your deck, devise strategies, and outsmart your opponents in deep, tactical rounds.',
-                specs: [
-                    { l: 'Platform', v: 'Browser' },
-                    { l: 'Genre', v: 'Card / Strategy' },
-                    { l: 'Multiplayer', v: 'Yes' },
-                    { l: 'Status', v: 'Active' },
-                ],
-                tech: ['Vanillajs', 'Socket.io', 'Node.js'],
-                screenshots: [
-                    'assets/cards1.png',
-                    'assets/cards2.png',
-                    'assets/cards3.png',
-                    'https://placehold.co/660x260/231e33/f5a623?text=Deck+Builder',
-                    'https://placehold.co/660x260/231e33/c084fc?text=Card+Battle'
-                ],
-                url: 'https://cards.cosmics.software/'
-            },
-            {
-                id: 8, category: 'game',
-                name: 'Story Game', icon: '📖',
-                tagline: 'Interactive text adventure',
-                badge: 'bgame', badgeLabel: 'Game',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'A beautifully written interactive fiction game where your choices shape the narrative. Explore multiple endings and deep character arcs.',
-                specs: [
-                    { l: 'Platform', v: 'Browser' },
-                    { l: 'Genre', v: 'RPG / Text Adventure' },
-                    { l: 'Endings', v: 'Multiple' },
-                    { l: 'Status', v: 'Active' },
-                ],
-                tech: ['HTML/CSS', 'JavaScript', 'JSON Data'],
-                screenshots: [
-                    'https://placehold.co/660x260/1a1a24/e4e8f0?text=Chapter+1',
-                    'assets/house1.png'
-                ],
-                url: 'https://house-break.vercel.app/'
-            },
-            {
-                id: 9, category: 'ext',
-                name: 'Browser Extension', icon: '🧩',
-                tagline: 'Helpful browser utility',
-                badge: 'bext', badgeLabel: 'Extension',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'A robust Chrome extension built to improve productivity and provide quick utility right from your browser toolbar.',
-                specs: [
-                    { l: 'Platform', v: 'Chrome' },
-                    { l: 'Category', v: 'Productivity' },
-                    { l: 'Status', v: 'Active' },
-                    { l: 'Type', v: 'Utility' },
-                ],
-                tech: ['Manifest V3', 'JavaScript', 'CSS'],
-                screenshots: [
-                    'https://placehold.co/660x260/1a1e2a/4f8ef7?text=Extension+Popup',
-                    'https://placehold.co/660x260/1a1e2a/4cd97b?text=Settings'
-                ],
-                url: '#'
-            },
-            {
-                id: 10, category: 'app',
-                name: 'AI Chatbot', icon: '🤖',
-                tagline: 'Intelligent conversational AI',
-                badge: 'bapp', badgeLabel: 'App',
-                status: 'slive', statusLabel: 'Live',
-                desc: 'An advanced, context-aware AI conversational partner designed to assist with coding, writing, and general problem solving.',
-                specs: [
-                    { l: 'Platform', v: 'Web' },
-                    { l: 'Category', v: 'Artificial Intelligence' },
-                    { l: 'Status', v: 'Active' },
-                    { l: 'Models', v: 'LLMs' },
-                ],
-                tech: ['React', 'Python', 'OpenAI API'],
-                screenshots: [
-                    'https://placehold.co/660x260/131820/c084fc?text=Chat+UI',
-                    'https://placehold.co/660x260/131820/4f8ef7?text=AI+Settings'
-                ],
-                url: '#'
-            },
-            {
-                id: 11, category: 'os',
-                name: 'Mini OS', icon: '💻',
-                tagline: 'Web-based desktop environment',
-                badge: 'bos', badgeLabel: 'OS',
-                status: 'sbeta', statusLabel: 'Beta',
-                desc: 'A fully functional mini operating system featuring a custom shell, file manager, and built-in apps, all existing within the browser.',
-                specs: [
-                    { l: 'Platform', v: 'Browser' },
-                    { l: 'Category', v: 'Virtual OS' },
-                    { l: 'Status', v: 'Beta' },
-                    { l: 'Type', v: 'Web Desktop' },
-                ],
-                tech: ['JavaScript', 'HTML5', 'CSS3', 'Local Storage'],
-                screenshots: [
-                    'https://placehold.co/660x260/0d1117/4cd97b?text=Desktop+Screen',
-                    'https://placehold.co/660x260/0d1117/f5a623?text=File+System'
-                ],
-                url: '#'
+        // Generating Random background stars for the starfield
+        function createStars(layerId, count) {
+            const layer = document.getElementById(layerId);
+            // using a radial gradient trick to create multiple dots efficiently
+            let bgValue = '';
+            for(let i=0; i<count; i++) {
+                const x = Math.floor(Math.random() * 2000);
+                const y = Math.floor(Math.random() * 2000);
+                const alpha = Math.random() * 0.5 + 0.3;
+                bgValue += `radial-gradient(1px 1px at ${x}px ${y}px, rgba(255,255,255,${alpha}), transparent),`;
             }
-        ];
-
-        // ── CARD BUILDER ──────────────────────────────────────────────
-        function buildCard(p) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.dataset.category = p.category;
-
-            const slidesHTML = p.screenshots.map((src, i) =>
-                `<div class="slide ${i === 0 ? 'active' : ''}"><img src="${src}" alt="" loading="lazy"/></div>`
-            ).join('');
-
-
-            const dotsHTML = p.screenshots.length > 1
-                ? `<div class="slide-dots">${p.screenshots.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}"></div>`).join('')}</div>`
-                : '';
-
-            card.innerHTML = `
-    <div class="slideshow" data-idx="0">
-      ${slidesHTML}${dotsHTML}
-    </div>
-    <div class="card-body">
-      <div class="card-top">
-        <div class="card-icon">${p.icon}</div>
-        <span class="badge ${p.badge}">${p.badgeLabel}</span>
-      </div>
-      <div class="card-name">${p.name}</div>
-      <div class="card-desc">${p.desc}</div>
-      <div class="card-footer">
-        <div class="card-status">
-          <div class="sdot ${p.status}"></div>${p.statusLabel}
-        </div>
-        <div class="card-arrow">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-    </div>`;
-
-            // Hover slideshow
-            const ss = card.querySelector('.slideshow');
-            const slides = card.querySelectorAll('.slide');
-            const dots = card.querySelectorAll('.dot');
-            let timer = null;
-
-            function adv() {
-                let i = +ss.dataset.idx;
-                slides[i].classList.remove('active'); dots[i]?.classList.remove('active');
-                i = (i + 1) % slides.length;
-                ss.dataset.idx = i;
-                slides[i].classList.add('active'); dots[i]?.classList.add('active');
+            if(bgValue.length > 0) {
+                layer.style.backgroundImage = bgValue.slice(0, -1);
             }
-
-            if (slides.length > 1) {
-                card.addEventListener('mouseenter', () => { timer = setInterval(adv, 1500); });
-                card.addEventListener('mouseleave', () => {
-                    clearInterval(timer);
-                    slides.forEach((s, i) => { s.classList.toggle('active', i === 0); dots[i]?.classList.toggle('active', i === 0); });
-                    ss.dataset.idx = 0;
-                });
-            }
-
-            card.addEventListener('click', () => openModal(p));
-            return card;
         }
+        
+        createStars('layer1', 150);
+        createStars('layer2', 80);
+        createStars('layer3', 30);
 
-        function renderGrid(cat = 'all') {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = '';
-            const list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
-            if (!list.length) { grid.innerHTML = '<div class="empty">No products here yet.</div>'; return; }
-            list.forEach(p => grid.appendChild(buildCard(p)));
-        }
-        renderGrid();
+        // Parallax scroll effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            document.getElementById('layer1').style.transform = `translateY(${scrolled * 0.15}px)`;
+            document.getElementById('layer2').style.transform = `translateY(${scrolled * 0.3}px)`;
+            document.getElementById('layer3').style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
 
-        function filter(cat, btn) {
-            document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderGrid(cat);
-        }
+        // Mouse movement interactive nebulas
+        const cursorNebula = document.getElementById('nebula-cursor');
+        const n1 = document.getElementById('nebula-1');
+        const n2 = document.getElementById('nebula-2');
 
-        // ── MODAL ─────────────────────────────────────────────────────
-        let mCur = 0, mSlides = [], mDots = [];
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            // Cursor follower
+            cursorNebula.style.opacity = '0.3';
+            cursorNebula.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
 
-        function openModal(p) {
-            const gallery = document.getElementById('mgallery');
-            gallery.querySelectorAll('.mslide').forEach(e => e.remove());
+            // Opposite reactive movement for corner nebulas
+            const windowX = window.innerWidth / 2;
+            const windowY = window.innerHeight / 2;
+            
+            const offsetX = (x - windowX) * 0.05;
+            const offsetY = (y - windowY) * 0.05;
 
-            mSlides = p.screenshots.map((src, i) => {
-                const d = document.createElement('div');
-                d.className = 'mslide' + (i === 0 ? ' active' : '');
-                d.innerHTML = `<img src="${src}" alt="" loading="lazy"/>`;
-                gallery.insertBefore(d, gallery.querySelector('.mgallery-nav'));
-                return d;
+            n1.style.transform = `translate(${-offsetX}px, ${-offsetY}px)`;
+            n2.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursorNebula.style.opacity = '0';
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => { observer.observe(el); });
+
+        // Mouse tracking glow effect for cards
+        document.querySelectorAll('.card-tilt').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -3; 
+                const rotateY = ((x - centerX) / centerX) * 3;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateY(-8px)`;
             });
 
-            const dotsEl = document.getElementById('mgdots');
-            dotsEl.innerHTML = '';
-            mDots = p.screenshots.map((_, i) => {
-                const d = document.createElement('div');
-                d.className = 'mdot' + (i === 0 ? ' active' : '');
-                d.onclick = () => goSlide(i);
-                dotsEl.appendChild(d);
-                return d;
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)`;
             });
-
-            mCur = 0;
-            const show = p.screenshots.length > 1;
-            document.getElementById('gprev').style.display = show ? '' : 'none';
-            document.getElementById('gnext').style.display = show ? '' : 'none';
-
-            document.getElementById('micon').textContent = p.icon;
-            document.getElementById('mname').textContent = p.name;
-            document.getElementById('mtagline').textContent = p.tagline;
-
-            document.getElementById('mbadges').innerHTML =
-                `<span class="badge ${p.badge}">${p.badgeLabel}</span>
-     <span class="mstatus-badge">
-       <span class="sdot ${p.status}" style="display:inline-block;width:6px;height:6px;border-radius:50%;vertical-align:middle"></span>
-       ${p.statusLabel}
-     </span>`;
-
-            document.getElementById('mdesc').textContent = p.desc;
-
-            document.getElementById('mspecs').innerHTML =
-                p.specs.map(s => `<div class="spec"><div class="spec-label">${s.l}</div><div class="spec-val">${s.v}</div></div>`).join('');
-
-            document.getElementById('mtech').innerHTML =
-                p.tech.map(t => `<span class="ttag">${t}</span>`).join('');
-
-            const btn = document.getElementById('mbtn');
-            btn.href = p.url || '#';
-            btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open ${p.name}`;
-
-            document.getElementById('overlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function goSlide(i) {
-            mSlides[mCur].classList.remove('active'); mDots[mCur]?.classList.remove('active');
-            mCur = ((i % mSlides.length) + mSlides.length) % mSlides.length;
-            mSlides[mCur].classList.add('active'); mDots[mCur]?.classList.add('active');
-        }
-
-        document.getElementById('gprev').onclick = () => goSlide(mCur - 1);
-        document.getElementById('gnext').onclick = () => goSlide(mCur + 1);
-
-        function closeModal() {
-            document.getElementById('overlay').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        function bgClose(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+        });
     </script>
 </body>
-
 </html>

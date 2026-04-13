@@ -1,0 +1,7 @@
+# Canonical domain and protocol redirects
+http://cosmics.software/* https://cosmics.software/:splat 301!
+http://www.cosmics.software/* https://cosmics.software/:splat 301!
+https://www.cosmics.software/* https://cosmics.software/:splat 301!
+
+# Canonicalize home URL
+/index.html / 301!

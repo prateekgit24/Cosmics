@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products & Tools - COSMICS</title>
+    <meta name="description" content="Explore Cosmics high-quality software resources, premium UI kits, and full-stack boilerplates." />
+    <meta name="keywords" content="Cosmics, software resources, UI kits, developer tools, full-stack boilerplates" />
+    <meta name="author" content="Cosmics" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Products & Tools - COSMICS" />
+    <meta property="og:description" content="Explore Cosmics high-quality software resources, premium UI kits, and full-stack boilerplates." />
+    <meta property="og:image" content="https://cosmics.software/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="google-adsense-account" content="ca-pub-5705659414000670">
+    <link rel="canonical" href="https://cosmics.software/tools.html" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta property="og:url" content="https://cosmics.software/tools.html" />
+    <meta property="og:type" content="website" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705659414000670"
+        crossorigin="anonymous"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0f1117;
+            --surface: #181c26;
+            --surface2: #1e2333;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e4e8f0;
+            --muted: #6b7590;
+            --accent: #4f8ef7;
+            --accent-soft: rgba(79, 142, 247, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(15, 17, 23, 0.92);
+            backdrop-filter: blur(16px);
+            z-index: 50;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--text);
+        }
+
+        .logo-name span {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 6px 15px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+
+        .pill:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .pill.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 48px 48px 28px;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .page-sub {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 18px;
+            padding: 4px 48px 80px;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.015);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(79, 142, 247, 0.22);
+            border-color: rgba(79, 142, 247, 0.22);
+        }
+
+        /* SLIDESHOW */
+        .slideshow {
+            width: 100%;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            background: var(--surface2);
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.55s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            background: linear-gradient(135deg, var(--surface2), #12151f);
+        }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 4px;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.28);
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        /* CARD BODY */
+        .card-body {
+            padding: 18px 18px 16px;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .badge {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px;
+            border: 1px solid;
+        }
+
+        .bweb {
+            color: #4f8ef7;
+            border-color: rgba(79, 142, 247, .35);
+            background: rgba(79, 142, 247, .08);
+        }
+
+        .bgame {
+            color: #f97060;
+            border-color: rgba(249, 112, 96, .35);
+            background: rgba(249, 112, 96, .08);
+        }
+
+        .bext {
+            color: #f5a623;
+            border-color: rgba(245, 166, 35, .35);
+            background: rgba(245, 166, 35, .08);
+        }
+
+        .bos {
+            color: #4cd97b;
+            border-color: rgba(76, 217, 123, .35);
+            background: rgba(76, 217, 123, .08);
+        }
+
+        .bapp {
+            color: #c084fc;
+            border-color: rgba(192, 132, 252, .35);
+            background: rgba(192, 132, 252, .08);
+        }
+
+        .card-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .sdot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .slive {
+            background: #4cd97b;
+            box-shadow: 0 0 5px rgba(76, 217, 123, .5);
+        }
+
+        .sbeta {
+            background: #f5a623;
+            box-shadow: 0 0 5px rgba(245, 166, 35, .4);
+        }
+
+        .ssoon {
+            background: var(--muted);
+        }
+
+        .card-arrow {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            transition: all 0.18s;
+        }
+
+        .card:hover .card-arrow {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 7, 12, 0.86);
+            backdrop-filter: blur(14px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s ease;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* MODAL */
+        .modal {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 660px;
+            max-height: 88vh;
+            overflow-y: auto;
+            transform: scale(0.95) translateY(14px);
+            transition: transform 0.22s ease;
+            position: relative;
+        }
+
+        .overlay.open .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.18s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* MODAL GALLERY */
+        .mgallery {
+            width: 100%;
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px 18px 0 0;
+            background: var(--surface2);
+        }
+
+        .mslide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+        }
+
+        .mslide.active {
+            opacity: 1;
+        }
+
+        .mslide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mslide-ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            background: linear-gradient(135deg, var(--surface2), #12151f);
+        }
+
+        .mgallery-nav {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            pointer-events: none;
+        }
+
+        .gbtn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(10, 12, 20, 0.68);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: all;
+            transition: background 0.2s;
+        }
+
+        .gbtn:hover {
+            background: rgba(79, 142, 247, 0.4);
+        }
+
+        .mgallery-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .mdot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.28);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .mdot.active {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* MODAL CONTENT */
+        .mcontent {
+            padding: 24px 28px 32px;
+        }
+
+        .mheader {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .micon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+
+        .mmeta {
+            flex: 1;
+        }
+
+        .mname {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .mtagline {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .mbadges {
+            display: flex;
+            gap: 7px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .mstatus-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            background: transparent;
+        }
+
+        .mdesc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.72;
+            margin-bottom: 22px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .spec {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 11px 14px;
+        }
+
+        .spec-label {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 3px;
+        }
+
+        .spec-val {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .tech-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 24px;
+        }
+
+        .ttag {
+            font-size: 12px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 3px 11px;
+            border-radius: 6px;
+        }
+
+        .open-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 28px;
+            width: 100%;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.18s;
+        }
+
+        .open-btn:hover {
+            background: #3b7ee0;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(79, 142, 247, 0.35);
+        }
+
+        .empty {
+            text-align: center;
+            padding: 70px 20px;
+            color: var(--muted);
+            grid-column: 1/-1;
+        }
+
+        @media(max-width:680px) {
+            header {
+                padding: 18px 20px;
+            }
+
+            .page-header,
+            .grid {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mcontent {
+                padding: 18px 18px 26px;
+            }
+
+            .mgallery {
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header style="flex-direction: column; align-items: center; gap: 20px;">
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <a class="logo" href="/">
+                <svg viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" stroke="rgba(79,142,247,0.4)" stroke-width="1.2" />
+                    <path d="M14 5L8 18H11.5L14 11L16.5 18H20L14 5Z" fill="#4f8ef7" />
+                    <path d="M11 18L14 21L17 18H11Z" fill="rgba(79,142,247,0.45)" />
+                </svg>
+                <span class="logo-name">COS<span>MICS</span></span>
+            </a>
+        </div>
+
+        <nav
+            style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+            <a href="/" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Home</a>
+            <a href="tools.html" style="color: var(--accent); text-decoration: none; transition: color 0.2s;">Tools</a>
+            <a href="about-us.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">About Us</a>
+            <a href="purchase.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Purchase</a>
+            <a href="learning.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Learning
+                Center</a>
+            <a href="career.html" style="color: #4cd97b; text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='#6ee79b'" onmouseout="this.style.color='#4cd97b'">Careers</a>
+            <a href="resources.html" style="color: var(--text); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Resources</a>
+        </nav>
+
+        <nav
+            style="display: flex; justify-content: center; width: 100%; border-top: 1px solid var(--border); padding-top: 18px;">
+            <button class="pill active" onclick="filter('all',this)">All</button>
+            <button class="pill" onclick="filter('web',this)">Web</button>
+            <button class="pill" onclick="filter('game',this)">Games</button>
+            <button class="pill" onclick="filter('ext',this)">Extensions</button>
+            <button class="pill" onclick="filter('os',this)">OS</button>
+            <button class="pill" onclick="filter('app',this)">Apps</button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">Our Products</h1>
+        <p class="page-sub">Click any card to explore details, screenshots &amp; specs.</p>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <!-- MODAL -->
+    <div class="overlay" id="overlay" onclick="bgClose(event)">
+        <div class="modal" id="modal">
+            <button class="modal-close" onclick="closeModal()">&#10005;</button>
+
+            <div class="mgallery" id="mgallery">
+                <div class="mgallery-nav">
+                    <button class="gbtn" id="gprev">&#8592;</button>
+                    <button class="gbtn" id="gnext">&#8594;</button>
+                </div>
+                <div class="mgallery-dots" id="mgdots"></div>
+            </div>
+
+            <div class="mcontent">
+                <div class="mheader">
+                    <div class="micon" id="micon"></div>
+                    <div class="mmeta">
+                        <div class="mname" id="mname"></div>
+                        <div class="mtagline" id="mtagline"></div>
+                        <div class="mbadges" id="mbadges"></div>
+                    </div>
+                </div>
+                <p class="mdesc" id="mdesc"></p>
+                <div class="specs-grid" id="mspecs"></div>
+                <div class="tech-row" id="mtech"></div>
+                <a class="open-btn" id="mbtn" href="#" target="_blank" rel="noopener noreferrer">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.3">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    Open Product
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer
+        style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); font-size: 14px;">
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+            <a href="privacy-policy.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Privacy
+                Policy</a>
+            <a href="contact-us.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Contact Us</a>
+            <a href="terms-conditions.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;"
+                onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Terms &
+                Conditions</a>
+        </div>
+        <p>&copy; 2026 Cosmics. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ── PRODUCT DATA ─────────────────────────────────────────────
+        // Replace screenshots with real image URLs, and url with your real link.
+        // ─────────────────────────────────────────────────────────────
+        const PRODUCTS = [
+            {
+                id: 1, category: 'web',
+                name: 'Ecommerce Hub', icon: '🛒',
+                tagline: 'Full-stack online storefront',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A complete e-commerce solution featuring real-time inventory management, secure payments, and an administrative dashboard for seamless store management.',
+                specs: [
+                    { l: 'Platform', v: 'Web (Browser)' },
+                    { l: 'Category', v: 'E-Commerce' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Full-Stack' },
+                ],
+                tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+                screenshots: [
+                    'https://placehold.co/660x260/1e2333/4f8ef7?text=Storefront',
+                    'https://placehold.co/660x260/1e2333/4cd97b?text=Checkout'
+                ],
+                url: 'coming-soon.html?product=Ecommerce%20Hub'
+            },
+            {
+                id: 2, category: 'web',
+                name: 'Books Portal', icon: '📚',
+                tagline: 'Digital library and bookstore',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A comprehensive digital library where users can browse, read, and purchase books. Includes a powerful search engine and personalized reading recommendations.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Books & Reference' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Frontend/Backend' },
+                ],
+                tech: ['Next.js', 'PostgreSQL', 'Tailwind CSS'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a2040/f5a623?text=Book+Library',
+                    'https://placehold.co/660x260/1a2040/f97060?text=Reading+View'
+                ],
+                url: 'coming-soon.html?product=Books%20Portal'
+            },
+            {
+                id: 3, category: 'web',
+                name: 'Chat App', icon: '💬',
+                tagline: 'Real-time messaging platform',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A fast, real-time communication platform supporting direct messaging, group chats, file sharing, and instant read receipts.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Communication' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Real-Time' },
+                ],
+                tech: ['React', 'Socket.io', 'Node.js', 'Express'],
+                screenshots: [
+                    'https://placehold.co/660x260/0d1020/4f8ef7?text=Chat+Interface',
+                    'https://placehold.co/660x260/0d1020/4cd97b?text=Group+Chat'
+                ],
+                url: 'coming-soon.html?product=Chat%20App'
+            },
+            {
+                id: 4, category: 'web',
+                name: 'Clusterbit', icon: '🎓',
+                tagline: 'Student learning through simulations',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A student-focused teaching website where learners understand concepts through interactive simulations and guided practical learning.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'STEM Education' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'Simulation-Based Learning' },
+                ],
+                tech: ['HTML5', 'CSS3', 'JavaScript', 'Physics Simulations'],
+                screenshots: [
+                    'https://placehold.co/660x260/1e2033/c084fc?text=Course+Dashboard',
+                    'https://placehold.co/660x260/1e2033/f5a623?text=Video+Player'
+                ],
+                url: 'https://prateekgit24.github.io/physics-animations/'
+            },
+            {
+                id: 5, category: 'game',
+                name: 'Ghost Killer', icon: '👻',
+                tagline: 'Fast-paced arcade shooter',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A wildly entertaining browser-based game where players must test their reflexes by eliminating incoming ghosts using just their mouse.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Arcade / Action' },
+                    { l: 'Input', v: 'Mouse' },
+                    { l: 'Status', v: 'Active' },
+                ],
+                tech: ['HTML5 Canvas', 'Vanilla JS', 'CSS Animations'],
+                screenshots: [
+                    'https://placehold.co/660x260/101820/f97060?text=Menu+Screen',
+                    'https://placehold.co/660x260/101820/f5a623?text=Killing+Ghosts'
+                ],
+                url: 'https://ghost-game-g417.onrender.com/'
+            },
+            {
+                id: 6, category: 'game',
+                name: 'Minigames Hub', icon: '🎮',
+                tagline: 'Collection of browser games',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A central hub featuring a constantly updating collection of small, highly optimized minigames playable directly in the browser with no downloads.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Various' },
+                    { l: 'Type', v: 'Collection' },
+                    { l: 'Status', v: 'Active' },
+                ],
+                tech: ['JavaScript', 'HTML5 WebGL', 'Howler.js'],
+                screenshots: [
+                    'assets/minigames.png'
+                ],
+                url: 'https://minigames.cosmics.software/'
+            },
+            {
+                id: 7, category: 'game',
+                name: 'Bencard', icon: '🃏',
+                tagline: 'Strategic card battler',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'An intense, strategic card game where you build your deck, devise strategies, and outsmart your opponents in deep, tactical rounds.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Card / Strategy' },
+                    { l: 'Multiplayer', v: 'Yes' },
+                    { l: 'Status', v: 'Active' },
+                ],
+                tech: ['React', 'Socket.io', 'Node.js'],
+                screenshots: [
+                    'assets/cards1.png',
+                    'assets/cards2.png',
+                    'assets/cards3.png'
+                ],
+                url: 'https://cards.cosmics.software/'
+            },
+            {
+                id: 8, category: 'game',
+                name: 'Story Game', icon: '📖',
+                tagline: 'Interactive text adventure',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A beautifully written interactive fiction game where your choices shape the narrative. Explore multiple endings and deep character arcs.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'RPG / Text Adventure' },
+                    { l: 'Endings', v: 'Multiple' },
+                    { l: 'Status', v: 'Coming Soon' },
+                ],
+                tech: ['HTML/CSS', 'JavaScript', 'JSON Data'],
+                screenshots: [
+                    'assets/house1.png'
+                ],
+                url: 'coming-soon.html?product=Story%20Game'
+            },
+            {
+                id: 9, category: 'ext',
+                name: 'Browser Extension', icon: '🧩',
+                tagline: 'Helpful browser utility',
+                badge: 'bext', badgeLabel: 'Extension',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A robust Chrome extension built to improve productivity and provide quick utility right from your browser toolbar.',
+                specs: [
+                    { l: 'Platform', v: 'Chrome' },
+                    { l: 'Category', v: 'Productivity' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Utility' },
+                ],
+                tech: ['Manifest V3', 'JavaScript', 'CSS'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a1e2a/4f8ef7?text=Extension+Popup',
+                    'https://placehold.co/660x260/1a1e2a/4cd97b?text=Settings'
+                ],
+                url: 'coming-soon.html?product=Browser%20Extension'
+            },
+            {
+                id: 10, category: 'app',
+                name: 'AI Chatbot', icon: '🤖',
+                tagline: 'Intelligent conversational AI',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'An advanced, context-aware AI conversational partner designed to assist with coding, writing, and general problem solving.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Artificial Intelligence' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Models', v: 'LLMs' },
+                ],
+                tech: ['React', 'Python', 'OpenAI API'],
+                screenshots: [
+                    'https://placehold.co/660x260/131820/c084fc?text=Chat+UI',
+                    'https://placehold.co/660x260/131820/4f8ef7?text=AI+Settings'
+                ],
+                url: 'coming-soon.html?product=AI%20Chatbot'
+            },
+            {
+                id: 11, category: 'os',
+                name: 'Mini OS', icon: '💻',
+                tagline: 'Web-based desktop environment',
+                badge: 'bos', badgeLabel: 'OS',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A fully functional mini operating system featuring a custom shell, file manager, and built-in apps, all existing within the browser.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Category', v: 'Virtual OS' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Web Desktop' },
+                ],
+                tech: ['JavaScript', 'HTML5', 'CSS3', 'Local Storage'],
+                screenshots: [
+                    'https://placehold.co/660x260/0d1117/4cd97b?text=Desktop+Screen',
+                    'https://placehold.co/660x260/0d1117/f5a623?text=File+System'
+                ],
+                url: 'coming-soon.html?product=Mini%20OS'
+            },
+            {
+                id: 12, category: 'game',
+                name: 'House Break', icon: '🏚️',
+                tagline: 'Escape and survival puzzle gameplay',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A browser game focused on tactical movement, quick thinking, and escape-style action inside a tense house break scenario.',
+                specs: [
+                    { l: 'Platform', v: 'Browser' },
+                    { l: 'Genre', v: 'Puzzle / Survival' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'Single Player' },
+                ],
+                tech: ['JavaScript', 'HTML5', 'CSS3'],
+                screenshots: [
+                    'assets/house1.png'
+                ],
+                url: 'https://house-break.vercel.app/'
+            },
+            {
+                id: 13, category: 'app',
+                name: 'HOW - Health Over Wealth', icon: '💪',
+                tagline: 'Health and fitness lifestyle platform',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'slive', statusLabel: 'Live',
+                desc: 'A health and fitness platform focused on better routines, consistent training, and practical wellness guidance for everyday life.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Health & Fitness' },
+                    { l: 'Status', v: 'Active' },
+                    { l: 'Type', v: 'Lifestyle App' },
+                ],
+                tech: ['HTML5', 'CSS3', 'JavaScript'],
+                screenshots: [
+                    'assets/how1.png'
+                ],
+                url: 'https://how.cosmics.software/'
+            },
+            {
+                id: 14, category: 'app',
+                name: 'Face Detector', icon: '🧠',
+                tagline: 'Computer vision with Python OpenCV',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A face detection platform built with Python and OpenCV for camera-based recognition demos, detection boxes, and model experiments.',
+                specs: [
+                    { l: 'Platform', v: 'Web + Python Service' },
+                    { l: 'Category', v: 'Computer Vision' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'AI Utility' },
+                ],
+                tech: ['Python', 'OpenCV', 'Flask', 'JavaScript'],
+                screenshots: [
+                    'https://placehold.co/660x260/121a16/4cd97b?text=Camera+Detection',
+                    'https://placehold.co/660x260/121a16/e4e8f0?text=Detection+Panel'
+                ],
+                url: 'coming-soon.html?product=Face%20Detector'
+            },
+            {
+                id: 15, category: 'web',
+                name: 'ConvertKit Pro Tools', icon: '🧰',
+                tagline: 'File conversion and compression suite',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A utility suite for image compression and document conversions like Word to PDF, PDF to Word, Excel to Word, and more.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Productivity Utilities' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Conversion Tools' },
+                ],
+                tech: ['Node.js', 'LibreOffice', 'ImageMagick', 'React'],
+                screenshots: [
+                    'https://placehold.co/660x260/17201a/4cd97b?text=Converter+Dashboard',
+                    'https://placehold.co/660x260/17201a/e4e8f0?text=Batch+Processing'
+                ],
+                url: 'coming-soon.html?product=ConvertKit%20Pro%20Tools'
+            },
+            {
+                id: 16, category: 'web',
+                name: 'Scam Site Detector', icon: '🛡️',
+                tagline: 'URL risk and phishing analysis',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A website checker that analyzes suspicious links and highlights phishing indicators, risky domains, and trust signals.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Security' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Threat Detection' },
+                ],
+                tech: ['Python', 'FastAPI', 'Threat Feeds', 'JavaScript'],
+                screenshots: [
+                    'https://placehold.co/660x260/14201a/4cd97b?text=URL+Scanner',
+                    'https://placehold.co/660x260/14201a/e4e8f0?text=Risk+Report'
+                ],
+                url: 'coming-soon.html?product=Scam%20Site%20Detector'
+            },
+            {
+                id: 17, category: 'web',
+                name: 'Cyber Security Hub', icon: '🔐',
+                tagline: 'Security learning and practical labs',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A cybersecurity portal with guided labs, awareness modules, and practical defensive security workflows for learners and teams.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Cybersecurity' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Learning Platform' },
+                ],
+                tech: ['Next.js', 'Node.js', 'Lab Sandbox APIs'],
+                screenshots: [
+                    'https://placehold.co/660x260/12201b/4cd97b?text=Security+Dashboard',
+                    'https://placehold.co/660x260/12201b/e4e8f0?text=Hands-on+Labs'
+                ],
+                url: 'coming-soon.html?product=Cyber%20Security%20Hub'
+            },
+            {
+                id: 18, category: 'app',
+                name: 'Electron Browser', icon: '🌐',
+                tagline: 'Fast lightweight desktop browsing app',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A custom desktop browser built on Electron with productivity tabs, session management, and quick developer utilities.',
+                specs: [
+                    { l: 'Platform', v: 'Desktop' },
+                    { l: 'Category', v: 'Browser' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Electron App' },
+                ],
+                tech: ['Electron', 'Node.js', 'React'],
+                screenshots: [
+                    'https://placehold.co/660x260/132019/4cd97b?text=Browser+Home',
+                    'https://placehold.co/660x260/132019/e4e8f0?text=Tab+Manager'
+                ],
+                url: 'coming-soon.html?product=Electron%20Browser'
+            },
+            {
+                id: 19, category: 'app',
+                name: 'Nebula Diary', icon: '📔',
+                tagline: 'Private journaling and daily tracking',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A diary application for secure journaling, habit reflection, mood logs, and private writing with cloud sync options.',
+                specs: [
+                    { l: 'Platform', v: 'Web / Mobile' },
+                    { l: 'Category', v: 'Lifestyle' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Personal App' },
+                ],
+                tech: ['React', 'Firebase', 'Encryption'],
+                screenshots: [
+                    'https://placehold.co/660x260/162016/4cd97b?text=Diary+Timeline',
+                    'https://placehold.co/660x260/162016/e4e8f0?text=Journal+Editor'
+                ],
+                url: 'coming-soon.html?product=Nebula%20Diary'
+            },
+            {
+                id: 20, category: 'app',
+                name: 'PulseTrack Android', icon: '📱',
+                tagline: 'Smart wellness app for Android',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A polished Android app concept focused on health routines, reminders, and progress analytics with an intuitive mobile-first UX.',
+                specs: [
+                    { l: 'Platform', v: 'Android' },
+                    { l: 'Category', v: 'Health & Productivity' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Native Mobile App' },
+                ],
+                tech: ['Kotlin', 'Jetpack Compose', 'Firebase'],
+                screenshots: [
+                    'https://placehold.co/660x260/102317/4cd97b?text=Android+Dashboard',
+                    'https://placehold.co/660x260/102317/e4e8f0?text=Progress+Insights'
+                ],
+                url: 'coming-soon.html?product=PulseTrack%20Android'
+            },
+            {
+                id: 21, category: 'app',
+                name: 'DeskPilot Windows', icon: '🖥️',
+                tagline: 'Modern productivity suite for Windows',
+                badge: 'bapp', badgeLabel: 'App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A proper Windows desktop app idea for task flow, note linking, and local automation for professional daily work.',
+                specs: [
+                    { l: 'Platform', v: 'Windows' },
+                    { l: 'Category', v: 'Productivity' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Desktop App' },
+                ],
+                tech: ['.NET', 'WinUI', 'SQLite'],
+                screenshots: [
+                    'https://placehold.co/660x260/132314/4cd97b?text=Workspace+View',
+                    'https://placehold.co/660x260/132314/e4e8f0?text=Automation+Panel'
+                ],
+                url: 'coming-soon.html?product=DeskPilot%20Windows'
+            },
+            {
+                id: 22, category: 'web',
+                name: 'Online Electronics Simulator', icon: '🔌',
+                tagline: 'Build and test circuits in browser',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'An electronics simulation environment for building circuits, testing logic, and visualizing outputs with interactive components.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Electronics' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Simulation Tool' },
+                ],
+                tech: ['JavaScript', 'Canvas', 'Simulation Engine'],
+                screenshots: [
+                    'https://placehold.co/660x260/112515/4cd97b?text=Circuit+Board',
+                    'https://placehold.co/660x260/112515/e4e8f0?text=Signal+Graph'
+                ],
+                url: 'coming-soon.html?product=Online%20Electronics%20Simulator'
+            },
+            {
+                id: 23, category: 'web',
+                name: 'Component Web Builder', icon: '🧩',
+                tagline: 'Visual site builder with code sync',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A web visualizer and builder where users place components and the HTML/CSS/JS code is generated and updated automatically.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Developer Tools' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'No-Code + Code Tool' },
+                ],
+                tech: ['React', 'Monaco Editor', 'AST Engine'],
+                screenshots: [
+                    'https://placehold.co/660x260/132316/4cd97b?text=Visual+Builder',
+                    'https://placehold.co/660x260/132316/e4e8f0?text=Generated+Code'
+                ],
+                url: 'coming-soon.html?product=Component%20Web%20Builder'
+            },
+            {
+                id: 24, category: 'web',
+                name: 'Web Widgets Code Vault', icon: '⏱️',
+                tagline: 'Drop-in UI widgets with clean code',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A web tools catalog with reusable widgets like clocks and interactive blocks, each with production-ready copy-paste code.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Frontend Toolkit' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Code Snippets Library' },
+                ],
+                tech: ['HTML', 'CSS', 'JavaScript', 'Snippet Library'],
+                screenshots: [
+                    'https://placehold.co/660x260/102818/4cd97b?text=Clock+Collection',
+                    'https://placehold.co/660x260/102818/e4e8f0?text=Code+Preview'
+                ],
+                url: 'coming-soon.html?product=Web%20Widgets%20Code%20Vault'
+            },
+            {
+                id: 25, category: 'game',
+                name: 'Kingdom Forge 3D', icon: '🏗️',
+                tagline: '3D scenario and structure builder game',
+                badge: 'bgame', badgeLabel: 'Game',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A 3D game concept where players build settlements, manage structures, and design strategic scenarios inspired by base-building gameplay.',
+                specs: [
+                    { l: 'Platform', v: 'Web / Desktop' },
+                    { l: 'Genre', v: '3D Strategy Builder' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Simulation Game' },
+                ],
+                tech: ['Unity', 'C#', 'WebGL'],
+                screenshots: [
+                    'https://placehold.co/660x260/1a2b1e/4cd97b?text=Village+Build',
+                    'https://placehold.co/660x260/1a2b1e/e4e8f0?text=Structure+Planning'
+                ],
+                url: 'coming-soon.html?product=Kingdom%20Forge%203D'
+            },
+            {
+                id: 26, category: 'web',
+                name: 'Cosmics Blog Sphere', icon: '📝',
+                tagline: 'Community blogging and media sharing platform',
+                badge: 'bweb', badgeLabel: 'Web App',
+                status: 'ssoon', statusLabel: 'Coming Soon',
+                desc: 'A blog website where users can publish viewpoints, share articles, attach media, and interact through comments and topic communities.',
+                specs: [
+                    { l: 'Platform', v: 'Web' },
+                    { l: 'Category', v: 'Social Publishing' },
+                    { l: 'Status', v: 'Coming Soon' },
+                    { l: 'Type', v: 'Community Platform' },
+                ],
+                tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Media CDN'],
+                screenshots: [
+                    'https://placehold.co/660x260/14231a/4cd97b?text=Blog+Feed',
+                    'https://placehold.co/660x260/14231a/e4e8f0?text=Article+Editor'
+                ],
+                url: 'coming-soon.html?product=Cosmics%20Blog%20Sphere'
+            }
+        ];
+
+        // ── CARD BUILDER ──────────────────────────────────────────────
+        function buildCard(p) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.category = p.category;
+
+            const slidesHTML = p.screenshots.map((src, i) =>
+                `<div class="slide ${i === 0 ? 'active' : ''}"><img src="${src}" alt="" loading="lazy"/></div>`
+            ).join('');
+
+
+            const dotsHTML = p.screenshots.length > 1
+                ? `<div class="slide-dots">${p.screenshots.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}"></div>`).join('')}</div>`
+                : '';
+
+            card.innerHTML = `
+    <div class="slideshow" data-idx="0">
+      ${slidesHTML}${dotsHTML}
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-icon">${p.icon}</div>
+        <span class="badge ${p.badge}">${p.badgeLabel}</span>
+      </div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-desc">${p.desc}</div>
+      <div class="card-footer">
+        <div class="card-status">
+          <div class="sdot ${p.status}"></div>${p.statusLabel}
+        </div>
+        <div class="card-arrow">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>`;
+
+            // Hover slideshow
+            const ss = card.querySelector('.slideshow');
+            const slides = card.querySelectorAll('.slide');
+            const dots = card.querySelectorAll('.dot');
+            let timer = null;
+
+            function adv() {
+                let i = +ss.dataset.idx;
+                slides[i].classList.remove('active'); dots[i]?.classList.remove('active');
+                i = (i + 1) % slides.length;
+                ss.dataset.idx = i;
+                slides[i].classList.add('active'); dots[i]?.classList.add('active');
+            }
+
+            if (slides.length > 1) {
+                card.addEventListener('mouseenter', () => { timer = setInterval(adv, 1500); });
+                card.addEventListener('mouseleave', () => {
+                    clearInterval(timer);
+                    slides.forEach((s, i) => { s.classList.toggle('active', i === 0); dots[i]?.classList.toggle('active', i === 0); });
+                    ss.dataset.idx = 0;
+                });
+            }
+
+            card.addEventListener('click', () => openModal(p));
+            return card;
+        }
+
+        function renderGrid(cat = 'all') {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            const list = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+            if (!list.length) { grid.innerHTML = '<div class="empty">No products here yet.</div>'; return; }
+            list.forEach(p => grid.appendChild(buildCard(p)));
+        }
+        renderGrid();
+
+        function filter(cat, btn) {
+            document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderGrid(cat);
+        }
+
+        // ── MODAL ─────────────────────────────────────────────────────
+        let mCur = 0, mSlides = [], mDots = [];
+
+        function openModal(p) {
+            const gallery = document.getElementById('mgallery');
+            gallery.querySelectorAll('.mslide').forEach(e => e.remove());
+
+            mSlides = p.screenshots.map((src, i) => {
+                const d = document.createElement('div');
+                d.className = 'mslide' + (i === 0 ? ' active' : '');
+                d.innerHTML = `<img src="${src}" alt="" loading="lazy"/>`;
+                gallery.insertBefore(d, gallery.querySelector('.mgallery-nav'));
+                return d;
+            });
+
+            const dotsEl = document.getElementById('mgdots');
+            dotsEl.innerHTML = '';
+            mDots = p.screenshots.map((_, i) => {
+                const d = document.createElement('div');
+                d.className = 'mdot' + (i === 0 ? ' active' : '');
+                d.onclick = () => goSlide(i);
+                dotsEl.appendChild(d);
+                return d;
+            });
+
+            mCur = 0;
+            const show = p.screenshots.length > 1;
+            document.getElementById('gprev').style.display = show ? '' : 'none';
+            document.getElementById('gnext').style.display = show ? '' : 'none';
+
+            document.getElementById('micon').textContent = p.icon;
+            document.getElementById('mname').textContent = p.name;
+            document.getElementById('mtagline').textContent = p.tagline;
+
+            document.getElementById('mbadges').innerHTML =
+                `<span class="badge ${p.badge}">${p.badgeLabel}</span>
+     <span class="mstatus-badge">
+       <span class="sdot ${p.status}" style="display:inline-block;width:6px;height:6px;border-radius:50%;vertical-align:middle"></span>
+       ${p.statusLabel}
+     </span>`;
+
+            document.getElementById('mdesc').textContent = p.desc;
+
+            document.getElementById('mspecs').innerHTML =
+                p.specs.map(s => `<div class="spec"><div class="spec-label">${s.l}</div><div class="spec-val">${s.v}</div></div>`).join('');
+
+            document.getElementById('mtech').innerHTML =
+                p.tech.map(t => `<span class="ttag">${t}</span>`).join('');
+
+            const btn = document.getElementById('mbtn');
+            btn.href = p.url || '#';
+            btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open ${p.name}`;
+
+            document.getElementById('overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function goSlide(i) {
+            mSlides[mCur].classList.remove('active'); mDots[mCur]?.classList.remove('active');
+            mCur = ((i % mSlides.length) + mSlides.length) % mSlides.length;
+            mSlides[mCur].classList.add('active'); mDots[mCur]?.classList.add('active');
+        }
+
+        document.getElementById('gprev').onclick = () => goSlide(mCur - 1);
+        document.getElementById('gnext').onclick = () => goSlide(mCur + 1);
+
+        function closeModal() {
+            document.getElementById('overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function bgClose(e) { if (e.target === document.getElementById('overlay')) closeModal(); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+
+</html>

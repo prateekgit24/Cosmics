@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Force HTTPS and non-www canonical host.
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.cosmics\.software$ [NC]
+RewriteRule ^ https://cosmics.software%{REQUEST_URI} [L,R=301]
+
+# Canonicalize index.html to root URL.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [L,R=301]
