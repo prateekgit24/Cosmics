@@ -16,5 +16,15 @@
       "destination": "https://cosmics.software/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/:page",
+      "destination": "/:page.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
   ]
 }
